@@ -8,18 +8,30 @@ namespace breakingBread.BreakingBread.Util
     {
         public delegate void bButtonCallback();
 
-        Bitmap bitmap;
-        int x, y, w, h, mX, mY;
-        bButtonCallback callback;
-        variables var = variables.Instance;
+
+        #region variables
+        #region public
+        public float hoverAlpha = 0f;
+        public bool doHoverAnimation = true;
         public bool visible = true;
+        public int bXOffset = 5;
+        public int bYOffset = 5;
+
+        #endregion
+
+        #region private
+        private variables var = variables.Instance;
+        private bButtonCallback callback;
+        private Bitmap bitmap;
+        private int x, y, w, h, mX, mY;
         private Color hoverCollor = Color.White;
         private bool doHoverCallback = false;
         private bool hoverAnimate = false;
-        public float hoverAlpha = 0f;
-        public bool doHoverAnimation = true;
-        public List<Vector2f> boundPoints;
-        System.Drawing.Bitmap bit;
+        //private Vector2f[] boundPoints;
+        private List<Vector2f> boundPoints;
+        private System.Drawing.Bitmap bit;
+        #endregion
+        #endregion
 
         public bButton(bButtonCallback _callback, Bitmap bmp, int _x, int _y, int width, int height, string boundsFile)
         {
@@ -106,6 +118,7 @@ namespace breakingBread.BreakingBread.Util
 
         public override void Paint()
         {
+            //Console.WriteLine("T");
             if (visible)
             {
                 if (doHoverAnimation)
@@ -113,24 +126,13 @@ namespace breakingBread.BreakingBread.Util
                     var.engine.SetColor(hoverCollor.R, hoverCollor.G, hoverCollor.B, (int)hoverAlpha);
                     if (boundPoints != null)
                     {
-                        for (int i = 0; i < 4; i++)
+                        for (int i = 0; i < boundPoints.Count; i++)
                         {
-                            Vector2f startPos = new Vector2f(boundPoints[i].X + (x - 4), boundPoints[i].Y + (y - 2));
-                            Vector2f endPos;
-                            if (i == 3)
-                            {
-                                endPos = new Vector2f(boundPoints[0].X + (x - 4), boundPoints[0].Y + y);
-                            }
-                            else
-                            {
-                                endPos = new Vector2f(boundPoints[i + 1].X + (x - 4), boundPoints[i + 1].Y + (y - 2));
-                            }
-                            var.engine.DrawLine(startPos, endPos, 5);
+                            var.engine.FillRectangle(boundPoints[i].X + (x-bXOffset), boundPoints[i].Y + (y-bYOffset), 5, 5);
                         }
                     }
                     else
                     {
-                        //Console.WriteLine("No bounds drawing cube");
                         var.engine.FillRectangle(x - 4, y - 4, w + 8, h + 8);
                     }
                 }
@@ -142,31 +144,53 @@ namespace breakingBread.BreakingBread.Util
         //Calculate bounds
         bool calculateBounds(string bmp)
         {
-            try
+            bit = new System.Drawing.Bitmap(var.assetPath + bmp);
+            for (int _x = 0; _x < bit.Width; _x++)
             {
-                bit = new System.Drawing.Bitmap(var.assetPath + bmp);
-                for (int _x = 0; _x < bit.Width; _x++)
+                for (int _y = 0; _y < bit.Height; _y++)
                 {
-                    for (int _y = 0; _y < bit.Height; _y++)
+
+
+                    if (bit.GetPixel(_x, _y).A == 0)
                     {
-                        if (bit.GetPixel(_x, _y).R == 255 && bit.GetPixel(_x, _y).G == 0 && bit.GetPixel(_x, _y).B == 215)
+                        if (_x + 1 < bit.Width && bit.GetPixel(_x + 1, _y).A == 255)
                         {
-                            Console.WriteLine("Found bound");
-                            boundPoints.Add(new Vector2f(_x, _y));
+                            Vector2f currentPos = new Vector2f(_x, _y);
+                            if (!boundPoints.Contains(currentPos))
+                            {
+                                boundPoints.Add(new Vector2f(_x, _y));
+                            }
+                        }
+
+                        if (_x - 1 != -1 && bit.GetPixel(_x - 1, _y).A == 255)
+                        {
+                            Vector2f currentPos = new Vector2f(_x, _y);
+                            if (!boundPoints.Contains(currentPos))
+                            {
+                                boundPoints.Add(new Vector2f(_x, _y));
+                            }
+                        }
+                    }
+
+                    if (bit.GetPixel(_x, _y).A == 0)
+                    {
+                        if ((_y - 1) != -1 && bit.GetPixel(_x, _y - 1).A == 255)
+                        {
+                            Vector2f currentPos = new Vector2f(_x, _y);
+                            if (!boundPoints.Contains(currentPos))
+                                boundPoints.Add(currentPos);
+                        }
+                        if ((_y + 1) < bit.Height && bit.GetPixel(_x, _y + 1).A == 255)
+                        {
+                            Vector2f currentPos = new Vector2f(_x, _y);
+                            if (!boundPoints.Contains(currentPos))
+                                boundPoints.Add(currentPos);
                         }
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                //visible = false;
-            }
-            //Shifting positions so we can iterate through
-            Vector2f placeHolder;
-            placeHolder = boundPoints[2];
-            boundPoints[2] = boundPoints[3];
-            boundPoints[3] = placeHolder;
 
+            Console.WriteLine(boundPoints.Count);
             bit.Dispose();
             return true;
 

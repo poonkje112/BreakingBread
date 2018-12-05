@@ -47,6 +47,7 @@ namespace GameEngine
         public override void Paint()
         {
             sceneManager.sDraw();
+            //engine.FillRectangle(0, 0, 8, 8);
 
         }
     }
