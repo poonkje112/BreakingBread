@@ -51,17 +51,17 @@ namespace breakingBread.BreakingBread.Scenes
         void initializeButtons()
         {
             buttons.Add("Bomb", new bButton(Bomb, bBomb, 40, 411, 85, 171, "bombBounds.png"));
-            buttons["Bomb"].setHover(true, Color.Black);
+            buttons["Bomb"].setHover(true, Color.Red);
             buttons["Bomb"].bXOffset = 4;
             buttons["Bomb"].bYOffset = 6;
 
             buttons.Add("Bagu", new bButton(Bagu, bBagu, 864, 538, 288, 78, "baguBounds.png"));
-            buttons["Bagu"].setHover(true, Color.Black);
+            buttons["Bagu"].setHover(true, Color.Red);
             buttons["Bagu"].bXOffset = 4;
             buttons["Bagu"].bYOffset = 4;
 
             buttons.Add("Vent", new bButton(Vent, bVent, 514, 342, 257, 200, string.Empty));
-            buttons["Vent"].setHover(true, Color.Black);
+            buttons["Vent"].setHover(true, Color.Red);
 
         }
 
