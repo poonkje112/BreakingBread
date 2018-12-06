@@ -176,15 +176,15 @@ namespace breakingBread.BreakingBread.Util
                     {
                         if ((_y - 1) != -1 && bit.GetPixel(_x, _y - 1).A == 255)
                         {
-                            Vector2f currentPos = new Vector2f(_x, _y);
+                            Vector2f currentPos = new Vector2f(_x - 5, _y - 5);
                             if (!boundPoints.Contains(currentPos))
-                                boundPoints.Add(currentPos);
+                                boundPoints.Add(new Vector2f(_x, _y));
                         }
                         if ((_y + 1) < bit.Height && bit.GetPixel(_x, _y + 1).A == 255)
                         {
-                            Vector2f currentPos = new Vector2f(_x, _y);
+                            Vector2f currentPos = new Vector2f(_x - 5, _y - 5);
                             if (!boundPoints.Contains(currentPos))
-                                boundPoints.Add(currentPos);
+                                boundPoints.Add(new Vector2f(_x, _y));
                         }
                     }
                 }

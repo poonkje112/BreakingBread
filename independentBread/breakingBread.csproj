@@ -82,9 +82,12 @@
     <Compile Include="BreakingBread\Scenes\Testing\SampleScene.cs" />
     <Compile Include="BreakingBread\TemplateScene.cs" />
     <Compile Include="BreakingBread\Scenes\Testing\TestScene.cs" />
-    <Compile Include="BreakingBread\Util\bButton.cs" />
+    <Compile Include="BreakingBread\Util\Player\Player.cs" />
+    <Compile Include="BreakingBread\Util\UI\bButton.cs" />
+    <Compile Include="BreakingBread\Util\Player\Item.cs" />
     <Compile Include="BreakingBread\Util\Scene.cs" />
-    <Compile Include="BreakingBread\Util\SceneManager.cs" />
+    <Compile Include="BreakingBread\Util\Handlers\SceneManager.cs" />
+    <Compile Include="BreakingBread\Util\UI\Inventory.cs" />
     <Compile Include="BreakingBread\Util\variables.cs" />
     <Compile Include="Engine\AbstractGame.cs" />
     <Compile Include="Engine\GameEngine.cs" />
@@ -105,5 +108,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
