@@ -1,4 +1,5 @@
 ﻿using breakingBread.breakingBread.Game.util;
+using System;
 
 namespace breakingBread.breakingBread.Game
 {
@@ -10,8 +11,10 @@ namespace breakingBread.breakingBread.Game
     class Player : pGameObject
     {
         int animation, mX, mY, mW, mH;
-        isMoving moveState;
+        float movementSpeed = 100f;
+        public isMoving moveState;
         MissingTexture missing;
+        MainGameClass game = MainGameClass.Instance;
         public Player(int _x, int _y, int width, int height, int animationIndex)
         {
             x = _x;
@@ -28,30 +31,32 @@ namespace breakingBread.breakingBread.Game
             if (moveState == isMoving.y)
             {
                 //Do movement/scale shizzle
-
-            }
-            else if (moveState == isMoving.n)
-            {
-                if (x > mX || x < mX)
+                if (x != mX && x > mX)
                 {
-                    x = mX;
+                    x -= (int)(movementSpeed * game.engine.GetDeltaTime());
                 }
 
-                if (y > mY || y < mY)
+                if (x != mX && x < mX)
                 {
-                    y = mY;
+                    x += (int)(movementSpeed * game.engine.GetDeltaTime());
                 }
 
-                if (w > mW || w < mW)
+                if (y != mY && y > mY)
                 {
-                    w = mX;
+                    y -= (int)(movementSpeed * game.engine.GetDeltaTime());
                 }
 
-                if (h > mH || h < mH)
+                if (y != mY && y < mY)
                 {
-                    h = mH;
+                    y += (int)(movementSpeed * game.engine.GetDeltaTime());
                 }
-            }            
+
+                if (x == mX && y == mY)
+                    moveState = isMoving.n;
+
+            }      
+                missing.x = x;
+                missing.y = y;
         }
 
         public void moveTo(int _x, int _y)
@@ -65,6 +70,7 @@ namespace breakingBread.breakingBread.Game
             mY = _y;
             mW = width;
             mH = height;
+            moveState = isMoving.y;
         }
 
     }

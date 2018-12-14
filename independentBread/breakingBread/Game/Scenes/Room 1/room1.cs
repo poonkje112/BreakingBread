@@ -28,7 +28,9 @@ namespace breakingBread.breakingBread.Game.Scenes
         {
             if (!bombDefused)
             {
-                game.sceneManager.sceneIndex++;
+                p.moveTo(40, 0);
+                //if(p.moveState == isMoving.n)
+                //game.sceneManager.sceneIndex++;
             }
         }
 
