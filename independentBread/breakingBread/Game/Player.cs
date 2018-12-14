@@ -1,4 +1,5 @@
-﻿using System;
+﻿using breakingBread.breakingBread.Game.util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,16 @@ namespace breakingBread.breakingBread.Game
 {
     class Player : pGameObject
     {
-        public Player(int x, int y, int width, int height, int animationIndex)
+        int x, y, w, h, animation;
+        public Player(int _x, int _y, int width, int height, int animationIndex)
         {
-
+            x = _x;
+            y = _y;
+            w = width;
+            h = height;
+            animation = animationIndex;
+            new MissingTexture(x,y,w,h);
+            Subscribe(this);
         }
     }
 }
