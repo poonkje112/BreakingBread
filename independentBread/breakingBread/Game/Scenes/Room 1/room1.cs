@@ -20,7 +20,7 @@ namespace breakingBread.breakingBread.Game.Scenes
             Console.WriteLine("Room 1");
             bck = new Background("Room_1_sketch.png");
             Bomb = new pInteractable(bombCallback, 40, 411, 85, 171, "bomb.png", true, 255, 0, 0);
-            p = new Player(50, 50, 100, 100, 0);
+            p = new Player(game.WIDTH / 2 - (int)37.5, 550, 75, 75, 0);
             Bomb.setHover(true);
         }
 

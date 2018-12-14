@@ -13,6 +13,7 @@ namespace breakingBread.breakingBread
         MainGameClass game = MainGameClass.Instance;
         public int ID = -1;
         public int layer = 0;
+        public int x, y, w, h;
 
         public virtual void pUpdate() { }
 

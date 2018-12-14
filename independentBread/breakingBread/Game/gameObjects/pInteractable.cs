@@ -29,7 +29,7 @@ namespace breakingBread.breakingBread.Game
         private string bmpName;
         private Bitmap hoverBitmap;
         private iCallback callback;
-        private int x, y, w, h, mX, mY;
+        private int mX, mY;
         //private Color hoverCollor = Color.White;
         int hoverR, hoverG, hoverB;
         private bool doHoverCallback = false;

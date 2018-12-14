@@ -8,7 +8,6 @@ namespace breakingBread.breakingBread.Game.util
 {
     class MissingTexture : pGameObject
     {
-        int x, y, w, h;
         MainGameClass game = MainGameClass.Instance;
 
         public MissingTexture(int _x, int _y, int width, int height)
