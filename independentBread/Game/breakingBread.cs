@@ -1,5 +1,7 @@
-﻿using independentBread.BreakingBread;
-using independentBread.BreakingBread.Util;
+﻿
+using breakingBread.breakingBread;
+using breakingBread.breakingBread.Game;
+using System.Collections.Generic;
 
 namespace GameEngine
 {
@@ -7,47 +9,48 @@ namespace GameEngine
     {
         Button start, credits, settings, exit;
         GameEngine engine;
-        SceneManager sceneManager;
-        variables vars;
+        MainGameClass game;
+        Button b;
+        scenes scenes = new scenes();
+
+
         public override void GameStart()
         {
             start = new Button("Test", 0, 0, 500, 200);
             start.SetActive(false);
+            game.sceneManager.Start();
+            scenes.warmupScenes();
+
         }
 
         public override void GameInitialize()
         {
             base.GameInitialize();
-            vars = variables.Instance;
-            sceneManager = SceneManager.Instance;
 
             engine = GAME_ENGINE;
-            engine.SetScreenWidth(vars.Width);
-            engine.SetScreenHeight(vars.Height);
+            game = MainGameClass.Instance;
+            game.engine = engine;
+            engine.SetScreenWidth(game.WIDTH);
+            engine.SetScreenHeight(game.HEIGHT);
             engine.SetTitle("Breaking Bread");
             engine.SetBackgroundColor(Color.Black);
-
-            vars.sceneManager = sceneManager;
-            sceneManager.Init();
-
-            vars.engine = engine;
             
         }
 
         public override void GameEnd()
         {
-            sceneManager.sUnload();
         }
 
         public override void Update()
         {
-            sceneManager.sUpdate();
+            
+            game.Update();
         }
 
         public override void Paint()
         {
-            sceneManager.sDraw();
             //engine.FillRectangle(0, 0, 8, 8);
+            game.Draw();
 
         }
     }

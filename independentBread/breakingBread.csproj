@@ -75,20 +75,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BreakingBread\MainGame.cs" />
-    <Compile Include="BreakingBread\Player\Inventory.cs" />
-    <Compile Include="BreakingBread\Scenes\Menu.cs" />
-    <Compile Include="BreakingBread\Scenes\room1.cs" />
-    <Compile Include="BreakingBread\Scenes\Testing\SampleScene.cs" />
-    <Compile Include="BreakingBread\TemplateScene.cs" />
-    <Compile Include="BreakingBread\Scenes\Testing\TestScene.cs" />
-    <Compile Include="BreakingBread\Util\Player\Player.cs" />
-    <Compile Include="BreakingBread\Util\UI\bButton.cs" />
-    <Compile Include="BreakingBread\Util\Player\Item.cs" />
-    <Compile Include="BreakingBread\Util\Scene.cs" />
-    <Compile Include="BreakingBread\Util\Handlers\SceneManager.cs" />
-    <Compile Include="BreakingBread\Util\UI\Inventory.cs" />
-    <Compile Include="BreakingBread\Util\variables.cs" />
+    <Compile Include="breakingBread\Game\gameObjects\Background.cs" />
+    <Compile Include="breakingBread\Game\MainGameClass.cs" />
+    <Compile Include="breakingBread\Game\pGameObject.cs" />
+    <Compile Include="breakingBread\Game\gameObjects\pInteractable.cs" />
+    <Compile Include="breakingBread\Game\Player.cs" />
+    <Compile Include="breakingBread\Game\pScene.cs" />
+    <Compile Include="breakingBread\Game\scenes.cs" />
+    <Compile Include="breakingBread\Game\Scenes\Room 1\bombDefuse.cs" />
+    <Compile Include="breakingBread\Game\Scenes\Room 1\room1.cs" />
+    <Compile Include="breakingBread\Game\Scenes\room2.cs" />
+    <Compile Include="breakingBread\Game\util\MissingTexture.cs" />
+    <Compile Include="breakingBread\Game\util\SceneManager.cs" />
+    <Compile Include="breakingBread\Game\util\Utils.cs" />
     <Compile Include="Engine\AbstractGame.cs" />
     <Compile Include="Engine\GameEngine.cs" />
     <Compile Include="Engine\Main.cs" />
