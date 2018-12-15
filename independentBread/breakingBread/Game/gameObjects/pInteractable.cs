@@ -72,8 +72,8 @@ namespace breakingBread.breakingBread.Game
             {
                 bitmap = new Bitmap(_bmpName);
 
-                if(highlightMap)
-                while (!calculateBounds(_bmpName)) { }
+                if (highlightMap)
+                    while (!calculateBounds(_bmpName)) { }
             }
             else
             {
@@ -180,8 +180,8 @@ namespace breakingBread.breakingBread.Game
 
         void doCallbackChecks()
         {
-            if(hoverAlpha == 0)
-            hoverAnimate = true;
+            if (hoverAlpha == 0)
+                hoverAnimate = true;
 
             if (game.engine.GetMouseButtonDown(0))
                 callback.Invoke();
@@ -231,9 +231,9 @@ namespace breakingBread.breakingBread.Game
 
             for (int i = 0; i < boundPoints.Count; i++)
             {
-                for(int x = 0; x < 6; x++)
+                for (int x = 0; x < 6; x++)
                 {
-                    for(int y = 0; y < 5; y++)
+                    for (int y = 0; y < 5; y++)
                     {
                         highlightBmp.SetPixel((int)boundPoints[i].X + x, (int)boundPoints[i].Y + y, System.Drawing.Color.FromArgb(255, hoverR, hoverG, hoverB));
                     }
@@ -251,7 +251,6 @@ namespace breakingBread.breakingBread.Game
 
         public override void Destroy()
         {
-            if(highlightBmp != null)
             highlightBmp.Dispose();
 
             if (File.Exists(game.assetPath + "Hover_" + bmpName))

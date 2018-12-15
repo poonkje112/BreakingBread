@@ -1,5 +1,4 @@
 ﻿using breakingBread.breakingBread.Game.util;
-using System;
 
 namespace breakingBread.breakingBread.Game
 {
@@ -11,10 +10,14 @@ namespace breakingBread.breakingBread.Game
     class Player : pGameObject
     {
         int animation, mX, mY, mW, mH;
-        float movementSpeed = 100f;
+        float movementSpeed = 200f;
         public isMoving moveState;
         MissingTexture missing;
         MainGameClass game = MainGameClass.Instance;
+        public delegate void iCallback();
+        iCallback callback;
+
+
         public Player(int _x, int _y, int width, int height, int animationIndex)
         {
             x = _x;
@@ -51,25 +54,53 @@ namespace breakingBread.breakingBread.Game
                     y += (int)(movementSpeed * game.engine.GetDeltaTime());
                 }
 
-                if (x == mX && y == mY)
+                //Scaling
+
+                if (w != mW && w > mW)
+                {
+                    w -= (int)(movementSpeed * game.engine.GetDeltaTime());
+                }
+
+                if (w != mW && w < mW)
+                {
+                    w += (int)(movementSpeed * game.engine.GetDeltaTime());
+                }
+
+                if (h != mH && h > mH)
+                {
+                    h -= (int)(movementSpeed * game.engine.GetDeltaTime());
+                }
+
+                if (h != mH && h < mH)
+                {
+                    h += (int)(movementSpeed * game.engine.GetDeltaTime());
+                }
+
+                if (x == mX && y == mY && w == mW && h == mH)
+                {
+                    callback();
                     moveState = isMoving.n;
+                }
 
-            }      
-                missing.x = x;
-                missing.y = y;
+            }
+            missing.x = x;
+            missing.y = y;
+            missing.w = w;
+            missing.h = h;
         }
 
-        public void moveTo(int _x, int _y)
+        public void moveTo(iCallback c, int _x, int _y)
         {
-            moveTo(_x, _y, w, h);
+            moveTo(c, _x, _y, w, h);
         }
 
-        public void moveTo(int _x, int _y, int width, int height)
+        public void moveTo(iCallback c, int _x, int _y, int width, int height)
         {
             mX = _x;
             mY = _y;
             mW = width;
             mH = height;
+            callback = c;
             moveState = isMoving.y;
         }
 

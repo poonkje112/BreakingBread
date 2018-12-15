@@ -28,10 +28,14 @@ namespace breakingBread.breakingBread.Game.Scenes
         {
             if (!bombDefused)
             {
-                p.moveTo(40, 0);
-                //if(p.moveState == isMoving.n)
-                //game.sceneManager.sceneIndex++;
+                if (p.moveState == isMoving.n)
+                p.moveTo(switchBomb, 75, 550);
             }
+        }
+
+        void switchBomb()
+        {
+            game.sceneManager.sceneIndex++;
         }
 
         public override void updateScene()
