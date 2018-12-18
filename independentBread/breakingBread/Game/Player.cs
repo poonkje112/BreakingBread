@@ -78,15 +78,17 @@ namespace breakingBread.breakingBread.Game
 
                 if (x == mX && y == mY && w == mW && h == mH)
                 {
-                    callback();
+                    callback.Invoke();
                     moveState = isMoving.n;
+                } else
+                {
+                    missing.x = x;
+                    missing.y = y;
+                    missing.w = w;
+                    missing.h = h;
                 }
 
             }
-            missing.x = x;
-            missing.y = y;
-            missing.w = w;
-            missing.h = h;
         }
 
         public void moveTo(iCallback c, int _x, int _y)
