@@ -3,6 +3,22 @@ using System.Collections.Generic;
 
 namespace breakingBread.breakingBread.Game
 {
+    public enum wireState
+    {
+        B = 0,
+        Y,
+        R
+    }
+
+    public enum gameState
+    {
+        begin = 0,
+        baguEmpty,
+        bombDefused,
+        lampClicked,
+        endGame
+    }
+
     class MainGameClass
     {
 
@@ -28,6 +44,7 @@ namespace breakingBread.breakingBread.Game
         public List<pScene> scenes = new List<pScene>();
         public GameEngine.GameEngine engine;
         public SceneManager sceneManager = new SceneManager();
+        public wireState wState;
         public Utils util = new Utils();
 #if DEBUG
         public string assetPath = "../../Assets/";

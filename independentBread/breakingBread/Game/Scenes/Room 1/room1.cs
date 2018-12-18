@@ -14,6 +14,7 @@ namespace breakingBread.breakingBread.Game.Scenes
         pInteractable Vent, Bomb, Bagu;
         MainGameClass game = MainGameClass.Instance;
         Player p;
+        Random rand = new Random();
         bool bombDefused = false;
         public override void startScene()
         {
@@ -22,6 +23,7 @@ namespace breakingBread.breakingBread.Game.Scenes
             Bomb = new pInteractable(bombCallback, 40, 411, 85, 171, "bomb.png", true, 255, 0, 0);
             p = new Player(game.WIDTH / 2 - (int)37.5, 550, 75, 75, 0);
             Bomb.setHover(true);
+            game.wState = (wireState)(rand.Next(Enum.GetNames(typeof(wireState)).Length));
         }
 
         void bombCallback()
