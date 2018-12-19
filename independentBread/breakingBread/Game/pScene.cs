@@ -11,10 +11,7 @@ namespace breakingBread.breakingBread.Game
 
         MainGameClass game = MainGameClass.Instance;
 
-        public virtual void startScene() {
-            game.scenes.Add(this);
-
-        }
+        public virtual void startScene() { }
         public virtual void unLoadScene() { }
 
         public virtual void updateScene() { }

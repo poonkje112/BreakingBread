@@ -12,7 +12,7 @@ namespace breakingBread.breakingBread.Game
         int animation, mX, mY, mW, mH;
         float movementSpeed = 200f;
         public isMoving moveState;
-        MissingTexture missing;
+        MissingTexture missing; // TODO: Remove me.
         MainGameClass game = MainGameClass.Instance;
         public delegate void iCallback();
         iCallback callback;
@@ -25,7 +25,7 @@ namespace breakingBread.breakingBread.Game
             w = width;
             h = height;
             animation = animationIndex;
-            missing = new MissingTexture(x, y, w, h);
+            missing = new MissingTexture(x, y, w, h); //TODO: Remove me.
             Subscribe(this);
         }
 

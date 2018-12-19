@@ -3,6 +3,7 @@ using GameEngine;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms;
 
 namespace breakingBread.breakingBread.Game
 {
@@ -181,6 +182,7 @@ namespace breakingBread.breakingBread.Game
 
         void doCallbackChecks()
         {
+            Cursor.Current = Cursors.Hand;
             if (hoverAlpha == 0)
                 hoverAnimate = true;
 
@@ -258,8 +260,8 @@ namespace breakingBread.breakingBread.Game
             exiting = true;
             Console.WriteLine("Called");
 
-            if(hoverBitmap != null)
-            hoverBitmap.Dispose();
+            if (hoverBitmap != null)
+                hoverBitmap.Dispose();
             hoverBitmap = null;
 
             if (File.Exists(game.assetPath + "Hover_" + bmpName))

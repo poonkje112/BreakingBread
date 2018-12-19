@@ -31,7 +31,7 @@ namespace breakingBread.breakingBread.Game.gameObjects
             game.engine.DrawBitmap(bmp, 0, 0, 0, 0, game.WIDTH, game.HEIGHT);
         }
 
-        public void Dispose()
+        public override void Destroy()
         {
             bmp.Dispose();
             bmp = null;

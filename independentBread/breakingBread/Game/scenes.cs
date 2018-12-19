@@ -12,6 +12,7 @@ namespace breakingBread.breakingBread.Game
     {
         MainGameClass game = MainGameClass.Instance;
 
+        mainMenu menu = new mainMenu();
         room1 room1 = new room1();
         room2 room2 = new room2();
         bombDefuse bomb = new bombDefuse();
@@ -19,6 +20,7 @@ namespace breakingBread.breakingBread.Game
         public void warmupScenes()
         {
             Console.WriteLine("Warming up scenes...");
+            game.scenes.Add(menu);
             game.scenes.Add(room1);
             game.scenes.Add(bomb);
             game.scenes.Add(room2);

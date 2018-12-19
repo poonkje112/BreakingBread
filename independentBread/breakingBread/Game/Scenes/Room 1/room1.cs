@@ -24,6 +24,8 @@ namespace breakingBread.breakingBread.Game.Scenes
             p = new Player(game.WIDTH / 2 - (int)37.5, 550, 75, 75, 0);
             Bomb.setHover(true);
             game.wState = (wireState)(rand.Next(Enum.GetNames(typeof(wireState)).Length));
+
+            Inventory inventory = new Inventory();
         }
 
         void bombCallback()

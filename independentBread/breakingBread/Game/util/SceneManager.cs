@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace breakingBread.breakingBread.Game.util
+﻿namespace breakingBread.breakingBread.Game.util
 {
     public enum isSceneSwitching
     {
@@ -80,7 +78,6 @@ namespace breakingBread.breakingBread.Game.util
             {
                 game.sortedGameObjects[i].pDraw();
             }
-
             game.engine.SetColor(0, 0, 0, sceneAlpha);
             game.engine.FillRectangle(0, 0, game.WIDTH, game.HEIGHT);
             game.engine.SetColor(0, 0, 0, 255);

@@ -39,6 +39,10 @@ namespace GameEngine
 
         public override void GameEnd()
         {
+            foreach(pGameObject gb in game.gameObjects)
+            {
+                gb.Unsubscribe(gb.ID);
+            }
         }
 
         public override void Update()
