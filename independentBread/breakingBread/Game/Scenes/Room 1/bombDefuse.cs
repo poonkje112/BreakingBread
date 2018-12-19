@@ -38,7 +38,8 @@ namespace breakingBread.breakingBread.Game.Scenes.Room_1
 
         void returnScene()
         {
-            Console.WriteLine("Win");
+            game.gState = gameState.bombDefused;
+            game.sceneManager.sceneIndex--;
 
         }
 

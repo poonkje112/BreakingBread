@@ -33,7 +33,9 @@ namespace breakingBread.breakingBread.Game.util
                 if (sceneAlpha == 255)
                 {
                     for (int i = 0; i < game.gameObjects.Count; i++)
+                    {
                         game.gameObjects[i].Unsubscribe(game.gameObjects[i].ID);
+                    }
 
                     game.gameObjects.Clear();
                     curSceneIndex = sceneIndex;

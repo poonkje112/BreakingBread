@@ -1524,6 +1524,8 @@ namespace GameEngine
     public class Bitmap : IDisposable
     {
         private SharpDX.Direct2D1.Bitmap m_D2DBitmap;
+        //Added by Aaron Knoop - 1GD1
+        private NativeFileStream fileStream;
         public SharpDX.Direct2D1.Bitmap D2DBitmap
         {
             get { return m_D2DBitmap; }
@@ -1545,6 +1547,11 @@ namespace GameEngine
             {
                 m_D2DBitmap.Dispose();
                 m_D2DBitmap = null;
+                /** Added by Aaron Knoop - 1GD1
+                 *  When we dispose the image it simply gets set to null, but we are not unloading the image from the
+                 *  memory.
+                 */
+                fileStream.Close();
             }
         }
 
@@ -1552,7 +1559,9 @@ namespace GameEngine
         {
             //Read the image
             ImagingFactory imagingFactory = new ImagingFactory();
-            NativeFileStream fileStream = new NativeFileStream(filePath, NativeFileMode.Open, NativeFileAccess.Read);
+
+            //Edited by Aaron Knoop - 1GD1
+            fileStream = new NativeFileStream(filePath, NativeFileMode.Open, NativeFileAccess.Read);
 
             //Decode and get the frame (decodes all sorts of image formats for us)
             BitmapDecoder bitmapDecoder = new BitmapDecoder(imagingFactory, fileStream, DecodeOptions.CacheOnDemand);

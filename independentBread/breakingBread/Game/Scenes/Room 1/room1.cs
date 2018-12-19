@@ -28,7 +28,7 @@ namespace breakingBread.breakingBread.Game.Scenes
 
         void bombCallback()
         {
-            if (!bombDefused)
+            if (game.gState != gameState.bombDefused)
             {
                 if (p.moveState == isMoving.n)
                 p.moveTo(switchBomb, 75, 550);

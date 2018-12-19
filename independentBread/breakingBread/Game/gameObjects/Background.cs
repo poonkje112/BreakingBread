@@ -33,6 +33,7 @@ namespace breakingBread.breakingBread.Game.gameObjects
 
         public void Dispose()
         {
+            bmp.Dispose();
             bmp = null;
         }
     }

@@ -45,6 +45,7 @@ namespace breakingBread.breakingBread.Game
         public GameEngine.GameEngine engine;
         public SceneManager sceneManager = new SceneManager();
         public wireState wState;
+        public gameState gState;
         public Utils util = new Utils();
 #if DEBUG
         public string assetPath = "../../Assets/";

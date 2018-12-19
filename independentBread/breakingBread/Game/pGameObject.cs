@@ -1,9 +1,4 @@
 ﻿using breakingBread.breakingBread.Game;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace breakingBread.breakingBread
 {
@@ -39,17 +34,15 @@ namespace breakingBread.breakingBread
         /// Unsubscribe the gameObject from the MainGameLoop
         /// </summary>
         /// <param name="gameObjectIndex">The index of the gameObject you want to remove</param>
-        public void Unsubscribe(int ID)
+        public void Unsubscribe(int _ID)
         {
-            for(int i = 0; i < game.gameObjects.Count; i++)
+            foreach(pGameObject gb in game.gameObjects)
             {
-                if(game.gameObjects[i].ID == ID)
+                if(gb.ID == _ID)
                 {
-                    game.gameObjects[i].Destroy();
-                    game.gameObjects.RemoveAt(i);
+                    gb.Destroy();
                 }
             }
         }
-
     }
 }

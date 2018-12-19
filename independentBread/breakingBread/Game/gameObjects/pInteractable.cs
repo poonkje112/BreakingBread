@@ -40,6 +40,7 @@ namespace breakingBread.breakingBread.Game
         private bool missingTexture = false;
         private bool highlightMap = false;
         private System.Drawing.Bitmap highlightBmp;
+        private bool exiting = false;
         #endregion
         #endregion
 
@@ -112,7 +113,7 @@ namespace breakingBread.breakingBread.Game
         {
             if (visible)
             {
-                if (doHoverAnimation)
+                if (doHoverAnimation && !exiting)
                 {
                     game.engine.SetColor(hoverR, hoverG, hoverB, (int)hoverAlpha);
                     if (hoverBitmap != null)
@@ -239,9 +240,12 @@ namespace breakingBread.breakingBread.Game
                     }
                 }
             }
-
-            highlightBmp.Save(game.assetPath + "Hover_" + bmp);
-            hoverBitmap = new Bitmap("Hover_" + bmp);
+            try
+            {
+                highlightBmp.Save(game.assetPath + "Hover_" + bmp);
+                hoverBitmap = new Bitmap("Hover_" + bmp);
+            }
+            catch (Exception ex) { }
 
             highlightBmp.Dispose();
             bit.Dispose();
@@ -251,7 +255,12 @@ namespace breakingBread.breakingBread.Game
 
         public override void Destroy()
         {
-            highlightBmp.Dispose();
+            exiting = true;
+            Console.WriteLine("Called");
+
+            if(hoverBitmap != null)
+            hoverBitmap.Dispose();
+            hoverBitmap = null;
 
             if (File.Exists(game.assetPath + "Hover_" + bmpName))
                 File.Delete(game.assetPath + "Hover_" + bmpName);
