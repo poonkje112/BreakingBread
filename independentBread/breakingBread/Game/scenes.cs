@@ -16,6 +16,8 @@ namespace breakingBread.breakingBread.Game
         room1 room1 = new room1();
         room2 room2 = new room2();
         bombDefuse bomb = new bombDefuse();
+        Death death = new Death();
+        Credits credits = new Credits();
 
         public void warmupScenes()
         {
@@ -24,6 +26,8 @@ namespace breakingBread.breakingBread.Game
             game.scenes.Add(room1);
             game.scenes.Add(bomb);
             game.scenes.Add(room2);
+            game.scenes.Add(death);
+            game.scenes.Add(credits);
         }
 
     }

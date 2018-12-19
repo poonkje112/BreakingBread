@@ -270,6 +270,7 @@ namespace breakingBread.breakingBread.Game
             bitmap.Dispose();
             bitmap = null;
             highlightBmp = null;
+            GC.Collect();
         }
     }
 }

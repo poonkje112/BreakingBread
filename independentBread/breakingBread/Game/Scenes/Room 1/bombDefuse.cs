@@ -13,6 +13,7 @@ namespace breakingBread.breakingBread.Game.Scenes.Room_1
         Background bck;
         pInteractable bWire, yWire, rWire;
         MainGameClass game = MainGameClass.Instance;
+        int attempt = 0;
         public override void startScene()
         {
             bck = new Background("bombBackground.png");
@@ -45,7 +46,13 @@ namespace breakingBread.breakingBread.Game.Scenes.Room_1
 
         void playerDeath()
         {
-            Console.WriteLine("Dead");
+            if(attempt == 1)
+            {
+                game.sceneManager.sceneIndex = game.scenes.Count - 2;
+            } else
+            {
+                attempt++;
+            }
         }
 
         public override void updateScene()

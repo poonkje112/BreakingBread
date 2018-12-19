@@ -35,6 +35,7 @@ namespace breakingBread.breakingBread.Game.gameObjects
         {
             bmp.Dispose();
             bmp = null;
+            GC.Collect();
         }
     }
 }

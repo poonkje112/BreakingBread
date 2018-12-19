@@ -1,4 +1,6 @@
-﻿namespace breakingBread.breakingBread.Game.util
+﻿using System;
+
+namespace breakingBread.breakingBread.Game.util
 {
     public enum isSceneSwitching
     {
@@ -42,8 +44,9 @@
                 }
             }
 
-            foreach (pGameObject go in game.sortedGameObjects)
-                go.pUpdate();
+            if (!game.goUpdating)
+                for (int i = 0; i < game.gameObjects.Count; i++)
+                    game.gameObjects[i].pUpdate();
 
             if (switchState == isSceneSwitching.n)
             {

@@ -1,4 +1,5 @@
 ﻿using breakingBread.breakingBread.Game.util;
+using GameEngine;
 
 namespace breakingBread.breakingBread.Game
 {
@@ -15,6 +16,7 @@ namespace breakingBread.breakingBread.Game
         MissingTexture missing; // TODO: Remove me.
         MainGameClass game = MainGameClass.Instance;
         public delegate void iCallback();
+        Bitmap bmp;
         iCallback callback;
 
 
@@ -25,7 +27,8 @@ namespace breakingBread.breakingBread.Game
             w = width;
             h = height;
             animation = animationIndex;
-            missing = new MissingTexture(x, y, w, h); //TODO: Remove me.
+            //missing = new MissingTexture(x, y, w, h); //TODO: Remove me.
+            bmp = new Bitmap("Player.png");
             Subscribe(this);
         }
 
@@ -82,15 +85,18 @@ namespace breakingBread.breakingBread.Game
                     moveState = isMoving.n;
                 } else
                 {
-                    missing.x = x;
-                    missing.y = y;
-                    missing.w = w;
-                    missing.h = h;
+                    //missing.x = x;
+                    //missing.y = y;
+                    //missing.w = w;
+                    //missing.h = h;
                 }
 
             }
         }
-
+        public override void pDraw()
+        {
+            game.engine.DrawBitmap(bmp, x, y);
+        }
         public void moveTo(iCallback c, int _x, int _y)
         {
             moveTo(c, _x, _y, w, h);

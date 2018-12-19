@@ -25,6 +25,10 @@ namespace breakingBread.breakingBread.Game
         public override void pDraw()
         {
             game.engine.DrawBitmap(bmp, 0, 0);
+            for(int i = 0; i < game.inventory.Count; i++)
+            {
+                game.inventory[i].drawItem(853 + (63 * i), 663, 50, 50);
+            }
         }
 
     }

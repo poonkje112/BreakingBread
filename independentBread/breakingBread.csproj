@@ -84,6 +84,8 @@
     <Compile Include="breakingBread\Game\Player.cs" />
     <Compile Include="breakingBread\Game\pScene.cs" />
     <Compile Include="breakingBread\Game\scenes.cs" />
+    <Compile Include="breakingBread\Game\Scenes\Credits.cs" />
+    <Compile Include="breakingBread\Game\Scenes\Death.cs" />
     <Compile Include="breakingBread\Game\Scenes\mainMenu.cs" />
     <Compile Include="breakingBread\Game\Scenes\Room 1\bombDefuse.cs" />
     <Compile Include="breakingBread\Game\Scenes\Room 1\room1.cs" />

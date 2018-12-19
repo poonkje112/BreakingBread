@@ -12,6 +12,9 @@ namespace GameEngine
         MainGameClass game;
         Button b;
         scenes scenes = new scenes();
+        string version = "ALPHA 1.0";
+        string buildDate = "19-12-2018";
+
 
 
         public override void GameStart()
@@ -55,6 +58,8 @@ namespace GameEngine
         {
             //engine.FillRectangle(0, 0, 8, 8);
             game.Draw();
+            engine.DrawString("Version: " + version, game.WIDTH - 170, 20, 250, 100);
+            engine.DrawString("Build date: " + buildDate, game.WIDTH - 170, 40, 250, 100);
 
         }
     }

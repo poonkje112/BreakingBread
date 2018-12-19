@@ -5,7 +5,7 @@ namespace breakingBread.breakingBread
     public class pGameObject
     {
 
-        MainGameClass game = MainGameClass.Instance;
+        private MainGameClass game = MainGameClass.Instance;
         public int ID = -1;
         public int layer = 0;
         public int x, y, w, h;
@@ -26,6 +26,7 @@ namespace breakingBread.breakingBread
         /// <param name="gameObject">The gameObject</param>
         public void Subscribe(pGameObject gameObject)
         {
+            game.goUpdating = true;
             gameObject.ID = game.gameObjects.Count;
             game.gameObjects.Add(gameObject);
         }

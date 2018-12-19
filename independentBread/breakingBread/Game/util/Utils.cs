@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace breakingBread.breakingBread.Game.util
 {
     class Utils
     {
-        public List<pGameObject> bubbleSort(List<pGameObject> inputList)
+        MainGameClass game = MainGameClass.Instance;
+        public List<pGameObject> bubbleSort(List<pGameObject> inputList, MainGameClass game)
         {
             pGameObject temp;
             for (int write = 0; write < inputList.Count; write++)
@@ -20,7 +20,8 @@ namespace breakingBread.breakingBread.Game.util
                     }
                 }
             }
-                return inputList;
-            }
+            game.goUpdating = false;
+            return inputList;
         }
     }
+}

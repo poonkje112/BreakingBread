@@ -42,21 +42,24 @@ namespace breakingBread.breakingBread.Game
         public List<pGameObject> gameObjects = new List<pGameObject>();
         public List<pGameObject> sortedGameObjects = new List<pGameObject>();
         public List<pScene> scenes = new List<pScene>();
+        public List<Item> inventory = new List<Item>();
         public GameEngine.GameEngine engine;
         public SceneManager sceneManager = new SceneManager();
         public wireState wState;
         public gameState gState;
         public Utils util = new Utils();
+        public bool goUpdating = false;
 #if DEBUG
         public string assetPath = "../../Assets/";
 #else
-                public string assetPath = "./Assets/" + filePath;
+                public string assetPath = "./Assets/";
 #endif
 
         public void Update()
         {
             sceneManager.updateScene();
-            sortedGameObjects = util.bubbleSort(gameObjects);
+            if(goUpdating)
+            sortedGameObjects = util.bubbleSort(gameObjects, instance);
         }
 
         public void Draw()
