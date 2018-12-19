@@ -1550,8 +1550,10 @@ namespace GameEngine
                 /** Added by Aaron Knoop - 1GD1
                  *  When we dispose the image it simply gets set to null, but we are not unloading the image from the
                  *  memory.
+                 *  Also forced the garbage collector to run since we don't need disposed stuff in our memory
                  */
                 fileStream.Close();
+                GC.Collect();
             }
         }
 

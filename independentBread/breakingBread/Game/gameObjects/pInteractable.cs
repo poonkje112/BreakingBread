@@ -251,6 +251,7 @@ namespace breakingBread.breakingBread.Game
 
             highlightBmp.Dispose();
             bit.Dispose();
+            GC.Collect();
             return true;
 
         }

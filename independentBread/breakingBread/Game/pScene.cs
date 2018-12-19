@@ -12,7 +12,7 @@ namespace breakingBread.breakingBread.Game
         MainGameClass game = MainGameClass.Instance;
 
         public virtual void startScene() { }
-        public virtual void unLoadScene() { }
+        public virtual void unLoadScene() { GC.Collect(); }
 
         public virtual void updateScene() { }
 

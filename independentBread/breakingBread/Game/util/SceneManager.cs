@@ -37,7 +37,11 @@ namespace breakingBread.breakingBread.Game.util
                         game.gameObjects[i].Unsubscribe(game.gameObjects[i].ID);
                     }
 
-                    game.gameObjects.Clear();
+                    if (curSceneIndex != -1)
+                    {
+                        game.gameObjects.Clear();
+                        game.scenes[curSceneIndex].unLoadScene();
+                    }
                     curSceneIndex = sceneIndex;
                     game.scenes[sceneIndex].startScene();
                     switchState = isSceneSwitching.n;
