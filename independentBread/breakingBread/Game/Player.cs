@@ -1,5 +1,6 @@
 ﻿using breakingBread.breakingBread.Game.util;
 using GameEngine;
+using System;
 
 namespace breakingBread.breakingBread.Game
 {
@@ -13,7 +14,6 @@ namespace breakingBread.breakingBread.Game
         int animation, mX, mY, mW, mH;
         float movementSpeed = 200f;
         public isMoving moveState;
-        MissingTexture missing; // TODO: Remove me.
         MainGameClass game = MainGameClass.Instance;
         public delegate void iCallback();
         Bitmap bmp;
@@ -27,7 +27,6 @@ namespace breakingBread.breakingBread.Game
             w = width;
             h = height;
             animation = animationIndex;
-            //missing = new MissingTexture(x, y, w, h); //TODO: Remove me.
             bmp = new Bitmap("Player.png");
             Subscribe(this);
         }
@@ -79,16 +78,14 @@ namespace breakingBread.breakingBread.Game
                     h += (int)(movementSpeed * game.engine.GetDeltaTime());
                 }
 
-                if (x == mX && y == mY && w == mW && h == mH)
+                if (x == mX && y == mY)
                 {
+                    Console.WriteLine("Called");
                     callback.Invoke();
                     moveState = isMoving.n;
                 } else
                 {
-                    //missing.x = x;
-                    //missing.y = y;
-                    //missing.w = w;
-                    //missing.h = h;
+                    Console.WriteLine("Now at -> X: {0} | Y: {1} | W: {2} | H: {3}", x, y, w, h);
                 }
 
             }
@@ -110,6 +107,7 @@ namespace breakingBread.breakingBread.Game
             mH = height;
             callback = c;
             moveState = isMoving.y;
+            Console.WriteLine("Moving to -> X: {0} | Y: {1} | W: {2} | H: {3}", mX, mY, mW, mH);
         }
 
     }

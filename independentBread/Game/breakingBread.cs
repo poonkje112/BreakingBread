@@ -7,10 +7,8 @@ namespace GameEngine
 {
     public class breakingBread : AbstractGame
     {
-        Button start, credits, settings, exit;
         GameEngine engine;
         MainGameClass game;
-        Button b;
         scenes scenes = new scenes();
         string version = "ALPHA 1.0";
         string buildDate = "19-12-2018";
@@ -19,10 +17,8 @@ namespace GameEngine
 
         public override void GameStart()
         {
-            start = new Button("Test", 0, 0, 500, 200);
-            start.SetActive(false);
-            game.sceneManager.Start();
             scenes.warmupScenes();
+            game.sceneManager.Start();
 
         }
 
@@ -56,7 +52,6 @@ namespace GameEngine
 
         public override void Paint()
         {
-            //engine.FillRectangle(0, 0, 8, 8);
             game.Draw();
             engine.DrawString("Version: " + version, game.WIDTH - 170, 20, 250, 100);
             engine.DrawString("Build date: " + buildDate, game.WIDTH - 170, 40, 250, 100);
