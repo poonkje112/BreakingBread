@@ -75,7 +75,7 @@ namespace breakingBread.breakingBread.Game
                 bitmap = new Bitmap(_bmpName);
 
                 if (highlightMap)
-                    while (!calculateBounds(_bmpName)) { }
+                    while (!generateHighlight(_bmpName)) { }
             }
             else
             {
@@ -147,6 +147,7 @@ namespace breakingBread.breakingBread.Game
             {
                 hoverAnimate = false;
             }
+
             if (doHoverAnimation)
             {
                 if (hoverAnimate && hoverAlpha < 200)
@@ -191,7 +192,7 @@ namespace breakingBread.breakingBread.Game
 
         }
 
-        bool calculateBounds(string bmp)
+        private bool generateHighlight(string bmp)
         {
             //Initializing our main bitmap
             bit = new System.Drawing.Bitmap(game.assetPath + bmp);
@@ -259,7 +260,7 @@ namespace breakingBread.breakingBread.Game
         public override void Destroy()
         {
             exiting = true;
-            Console.WriteLine("Called");
+            //Console.WriteLine("Called");
 
             if (hoverBitmap != null)
                 hoverBitmap.Dispose();

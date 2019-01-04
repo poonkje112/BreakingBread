@@ -48,6 +48,9 @@ namespace breakingBread.breakingBread.Game
         public wireState wState;
         public gameState gState;
         public Utils util = new Utils();
+        public Item selectedItem = null;
+
+
         public bool goUpdating = false;
 #if DEBUG
         public string assetPath = "../../Assets/";
@@ -58,8 +61,8 @@ namespace breakingBread.breakingBread.Game
         public void Update()
         {
             sceneManager.updateScene();
-            if(goUpdating)
-            sortedGameObjects = util.bubbleSort(gameObjects, instance);
+            if (goUpdating)
+                sortedGameObjects = util.bubbleSort(gameObjects, instance);
         }
 
         public void Draw()

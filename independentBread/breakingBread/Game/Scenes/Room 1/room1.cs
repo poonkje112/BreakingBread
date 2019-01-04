@@ -50,8 +50,8 @@ namespace breakingBread.breakingBread.Game.Scenes
         {
             if(game.gState == gameState.begin)
             {
-                game.inventory.Add(new Item(null));
-                game.gState = gameState.baguEmpty;
+                //game.gState = gameState.baguEmpty;
+                game.inventory.Add(new Item("sample.png"));
                 Console.WriteLine("Added item! Inventory count = {0}", game.inventory.Count);
             }
         }

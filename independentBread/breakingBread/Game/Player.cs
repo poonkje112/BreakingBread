@@ -83,9 +83,9 @@ namespace breakingBread.breakingBread.Game
                     Console.WriteLine("Called");
                     callback.Invoke();
                     moveState = isMoving.n;
-                } else
+                }
+                else
                 {
-                    Console.WriteLine("Now at -> X: {0} | Y: {1} | W: {2} | H: {3}", x, y, w, h);
                 }
 
             }
@@ -101,13 +101,16 @@ namespace breakingBread.breakingBread.Game
 
         public void moveTo(iCallback c, int _x, int _y, int width, int height)
         {
-            mX = _x;
-            mY = _y;
-            mW = width;
-            mH = height;
-            callback = c;
-            moveState = isMoving.y;
-            Console.WriteLine("Moving to -> X: {0} | Y: {1} | W: {2} | H: {3}", mX, mY, mW, mH);
+            if (moveState == isMoving.n)
+            {
+                mX = _x;
+                mY = _y;
+                mW = width;
+                mH = height;
+                callback = c;
+                moveState = isMoving.y;
+                Console.WriteLine("Moving to -> X: {0} | Y: {1} | W: {2} | H: {3}", mX, mY, mW, mH);
+            }
         }
 
     }

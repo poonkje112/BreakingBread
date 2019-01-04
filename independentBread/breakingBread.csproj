@@ -77,7 +77,7 @@
   <ItemGroup>
     <Compile Include="breakingBread\Game\gameObjects\Background.cs" />
     <Compile Include="breakingBread\Game\Inventory.cs" />
-    <Compile Include="breakingBread\Game\Item.cs" />
+    <Compile Include="breakingBread\Game\gameObjects\Item.cs" />
     <Compile Include="breakingBread\Game\MainGameClass.cs" />
     <Compile Include="breakingBread\Game\pGameObject.cs" />
     <Compile Include="breakingBread\Game\gameObjects\pInteractable.cs" />

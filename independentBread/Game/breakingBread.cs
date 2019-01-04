@@ -1,7 +1,4 @@
-﻿
-using breakingBread.breakingBread;
-using breakingBread.breakingBread.Game;
-using System.Collections.Generic;
+﻿using breakingBread.breakingBread.Game;
 
 namespace GameEngine
 {
@@ -33,20 +30,18 @@ namespace GameEngine
             engine.SetScreenHeight(game.HEIGHT);
             engine.SetTitle("Breaking Bread");
             engine.SetBackgroundColor(Color.Black);
-            
+
         }
 
         public override void GameEnd()
         {
-            foreach(pGameObject gb in game.gameObjects)
-            {
-                gb.Unsubscribe(gb.ID);
-            }
+            for (int i = 0; i < game.gameObjects.Count; i++)
+                game.gameObjects[i].Unsubscribe(game.gameObjects[i].ID);
         }
 
         public override void Update()
         {
-            
+
             game.Update();
         }
 
