@@ -34,10 +34,14 @@ namespace breakingBread.breakingBread.Game.Scenes
 
         void bombCallback()
         {
-            if (game.gState != gameState.bombDefused && game.gState == gameState.baguEmpty)
+            if (game.selectedItem != null && game.inventory[0] == game.selectedItem && game.gState != gameState.bombDefused && game.gState == gameState.baguEmpty)
             {
                 if (p.moveState == isMoving.n)
                 p.moveTo(switchBomb, 75, 550);
+                game.selectedItem = null;
+            } else
+            {
+                game.selectedItem = null;
             }
         }
 
@@ -50,7 +54,8 @@ namespace breakingBread.breakingBread.Game.Scenes
         {
             if(game.gState == gameState.begin)
             {
-                //game.gState = gameState.baguEmpty;
+                game.gState = gameState.baguEmpty;
+                game.inventory.Add(new Item("sample2.png"));
                 game.inventory.Add(new Item("sample.png"));
                 Console.WriteLine("Added item! Inventory count = {0}", game.inventory.Count);
             }

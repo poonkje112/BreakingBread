@@ -28,10 +28,16 @@ namespace breakingBread.breakingBread.Game
         {
             bmp = new Bitmap(bitmap);
             bmpName = bitmap;
+            LoadItem();
+        }
+
+        public void LoadItem()
+        {
+            bmp = new Bitmap(bmpName);
             if (bmp == null)
                 missing = new MissingTexture(0, 0, 50, 50);
 
-            if (generateHighlight(bitmap))
+            if (generateHighlight(bmpName))
                 Subscribe(this);
             else
                 Console.WriteLine("Could not generate highlight!");
@@ -207,9 +213,11 @@ namespace breakingBread.breakingBread.Game
 
             if (File.Exists(game.assetPath + "Hover_" + bmpName))
                 File.Delete(game.assetPath + "Hover_" + bmpName);
-
-            bmp.Dispose();
-            bmp = null;
+            if (bmp != null)
+            {
+                bmp.Dispose();
+                bmp = null;
+            }
             highlightBmp = null;
             GC.Collect();
         }
