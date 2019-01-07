@@ -16,7 +16,6 @@ namespace breakingBread.breakingBread.Game.Scenes
         MainGameClass game = MainGameClass.Instance;
         Player p;
         Random rand = new Random();
-        bool bombDefused = false;
         public override void startScene()
         {
             Console.WriteLine("Room 1");

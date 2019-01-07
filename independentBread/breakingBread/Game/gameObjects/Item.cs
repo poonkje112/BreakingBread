@@ -11,7 +11,6 @@ namespace breakingBread.breakingBread.Game
 {
     class Item : pGameObject
     {
-        string itemName = null;
         Bitmap bmp;
         MissingTexture missing;
         MainGameClass game = MainGameClass.Instance;

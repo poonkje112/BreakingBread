@@ -13,7 +13,7 @@ namespace breakingBread.breakingBread.Game.util
         MainGameClass game;
         private int curSceneIndex = -1;
         public int sceneIndex = 0;
-        isSceneSwitching switchState;
+        public isSceneSwitching switchState;
         int sceneAlpha = 255;
 
         public void Start()

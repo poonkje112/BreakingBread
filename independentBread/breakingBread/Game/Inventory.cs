@@ -27,14 +27,17 @@ namespace breakingBread.breakingBread.Game
         public override void pDraw()
         {
             game.engine.DrawBitmap(bmp, 0, 0);
-            for (int i = 0; i < game.inventory.Count; i++)
+            if (game.sceneManager.switchState == util.isSceneSwitching.n)
             {
-                //Checking if the items is subscribed
-                if(!game.gameObjects.Contains(game.inventory[i]))
+                for (int i = 0; i < game.inventory.Count; i++)
                 {
-                    game.inventory[i].LoadItem();
+                    //Checking if the items is subscribed
+                    if (!game.gameObjects.Contains(game.inventory[i]))
+                    {
+                        game.inventory[i].LoadItem();
+                    }
+                    game.inventory[i].drawItem(853 + (63 * i), 663, 50, 50);
                 }
-                game.inventory[i].drawItem(853 + (63 * i), 663, 50, 50);
             }
         }
 
