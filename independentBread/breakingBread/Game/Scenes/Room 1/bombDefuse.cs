@@ -48,7 +48,7 @@ namespace breakingBread.breakingBread.Game.Scenes.Room_1
         {
             if(attempt == 1)
             {
-                game.sceneManager.sceneIndex = game.scenes.Count - 2;
+                game.sceneManager.sceneIndex = game.scenes.Count - 1;
             } else
             {
                 attempt++;

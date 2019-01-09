@@ -14,7 +14,7 @@ namespace breakingBread.breakingBread.Game.util
         private int curSceneIndex = -1;
         public int sceneIndex = 0;
         public isSceneSwitching switchState;
-        int sceneAlpha = 255;
+        private int sceneAlpha = 255;
 
         public void Start()
         {
@@ -54,6 +54,7 @@ namespace breakingBread.breakingBread.Game.util
 
             if (switchState == isSceneSwitching.n)
             {
+                game.scenes[curSceneIndex].updateScene();
                 frameCount++;
                 if (frameCount == 3)
                 {

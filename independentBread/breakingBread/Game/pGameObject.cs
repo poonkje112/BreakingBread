@@ -37,11 +37,10 @@ namespace breakingBread.breakingBread
         /// <param name="gameObjectIndex">The index of the gameObject you want to remove</param>
         public void Unsubscribe(int _ID)
         {
-            foreach(pGameObject gb in game.gameObjects)
-            {
-                if(gb.ID == _ID)
+            for(int i = 0; i < game.gameObjects.Count; i++) { 
+                if(game.gameObjects[i].ID == _ID)
                 {
-                    gb.Destroy();
+                    game.gameObjects[i].Destroy();
                 }
             }
         }

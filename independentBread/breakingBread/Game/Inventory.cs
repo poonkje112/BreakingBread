@@ -31,7 +31,7 @@ namespace breakingBread.breakingBread.Game
             {
                 for (int i = 0; i < game.inventory.Count; i++)
                 {
-                    //Checking if the items is subscribed
+                    //Checking if the item is subscribed if not the item has been unloaded and needs to be reloaded.
                     if (!game.gameObjects.Contains(game.inventory[i]))
                     {
                         game.inventory[i].LoadItem();

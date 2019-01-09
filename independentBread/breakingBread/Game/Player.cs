@@ -58,41 +58,39 @@ namespace breakingBread.breakingBread.Game
 
                 //Scaling
 
-                if (w != mW && w > mW)
-                {
-                    w -= (int)(movementSpeed * game.engine.GetDeltaTime());
-                }
+                //if (w != mW && w > mW)
+                //{
+                //    w -= (int)(movementSpeed * game.engine.GetDeltaTime());
+                //}
 
-                if (w != mW && w < mW)
-                {
-                    w += (int)(movementSpeed * game.engine.GetDeltaTime());
-                }
+                //if (w != mW && w < mW)
+                //{
+                //    w += (int)(movementSpeed * game.engine.GetDeltaTime());
+                //}
 
-                if (h != mH && h > mH)
-                {
-                    h -= (int)(movementSpeed * game.engine.GetDeltaTime());
-                }
+                //if (h != mH && h > mH)
+                //{
+                //    h -= (int)(movementSpeed * game.engine.GetDeltaTime());
+                //}
 
-                if (h != mH && h < mH)
-                {
-                    h += (int)(movementSpeed * game.engine.GetDeltaTime());
-                }
+                //if (h != mH && h < mH)
+                //{
+                //    h += (int)(movementSpeed * game.engine.GetDeltaTime());
+                //}
 
-                if (x == mX && y == mY)
+                //if (x == mX && y == mY)
+                if(x >= mX && x <= (mX + 20) && y >= mY && y <= (mY + 20))
                 {
                     Console.WriteLine("Called");
                     callback.Invoke();
                     moveState = isMoving.n;
-                }
-                else
-                {
                 }
 
             }
         }
         public override void pDraw()
         {
-            game.engine.DrawBitmap(bmp, x, y);
+            game.engine.DrawBitmap(bmp, new Vector2f(x, y));
         }
         public void moveTo(iCallback c, int _x, int _y)
         {

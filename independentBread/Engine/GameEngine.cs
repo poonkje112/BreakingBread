@@ -1069,7 +1069,11 @@ namespace GameEngine
         //Bitmaps
         public void DrawBitmap(Bitmap bitmap, float x, float y)
         {
-            DrawBitmap(bitmap, x, y, 0, 0, 0, 0);
+            DrawBitmap(bitmap, x, y, 0, 0, 0, 0, m_Scale);
+        }
+        public void DrawBitmap(Bitmap bitmap, float x, float y, float sourceX, float sourceY, float sourceWidth, float sourceHeight)
+        {
+            DrawBitmap(bitmap, x, y, 0, 0, 0, 0, m_Scale);
         }
 
         public void DrawBitmap(Bitmap bitmap, Vector2f position)
@@ -1077,7 +1081,13 @@ namespace GameEngine
             DrawBitmap(bitmap, position.X, position.Y);
         }
 
-        public void DrawBitmap(Bitmap bitmap, float x, float y, float sourceX, float sourceY, float sourceWidth, float sourceHeight)
+        public void DrawBitmap(Bitmap bitmap, Vector2f position, Vector2f scale)
+        {
+            DrawBitmap(bitmap, position.X, position.Y, 0, 0, 0, 0, scale);
+        }
+
+        //TODO Make my own version of the bitmap system - Aaron Knoop
+        public void DrawBitmap(Bitmap bitmap, float x, float y, float sourceX, float sourceY, float sourceWidth, float sourceHeight, Vector2f scale)
         {
             if (!PaintCheck())
                 return;
@@ -1088,7 +1098,7 @@ namespace GameEngine
             if (sourceHeight == 0) sourceHeight = D2DBitmap.Size.Height;
 
             //Adjust the transform matrix
-            SetTransformMatrix(new Vector2f(x, y), m_Angle, m_Scale, new Vector2f(sourceWidth * 0.5f, sourceHeight * 0.5f));
+            SetTransformMatrix(new Vector2f(x, y), m_Angle, scale, new Vector2f(sourceWidth * 0.5f, sourceHeight * 0.5f));
 
             RawRectangleF sourceRect = new RawRectangleF(sourceX, sourceY, (sourceX + sourceWidth), (sourceY + sourceHeight));
             m_RenderTarget.DrawBitmap(D2DBitmap, m_CurrentBrush.Color.A, SharpDX.Direct2D1.BitmapInterpolationMode.NearestNeighbor, sourceRect);
@@ -1526,6 +1536,7 @@ namespace GameEngine
         private SharpDX.Direct2D1.Bitmap m_D2DBitmap;
         //Added by Aaron Knoop - 1GD1
         private NativeFileStream fileStream;
+
         public SharpDX.Direct2D1.Bitmap D2DBitmap
         {
             get { return m_D2DBitmap; }
@@ -1547,6 +1558,7 @@ namespace GameEngine
             {
                 m_D2DBitmap.Dispose();
                 m_D2DBitmap = null;
+
                 /** Added by Aaron Knoop - 1GD1
                  *  When we dispose the image it simply gets set to null, but we are not unloading the image from the
                  *  memory.
