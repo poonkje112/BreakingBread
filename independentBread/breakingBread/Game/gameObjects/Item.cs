@@ -25,21 +25,32 @@ namespace breakingBread.breakingBread.Game
 
         public Item(string bitmap)
         {
-            bmp = new Bitmap(bitmap);
-            bmpName = bitmap;
+            if (bitmap != null)
+            {
+                bmp = new Bitmap(bitmap);
+                bmpName = bitmap;
+            }
             LoadItem();
         }
 
         public void LoadItem()
         {
-            bmp = new Bitmap(bmpName);
             if (bmp == null)
                 missing = new MissingTexture(0, 0, 50, 50);
+            else
+                bmp = new Bitmap(bmpName);
+
 
             if (generateHighlight(bmpName))
+            {
                 Subscribe(this);
+            }
             else
+            {
                 Console.WriteLine("Could not generate highlight!");
+                Subscribe(this);
+                doHoverAnimation = false;
+            }
         }
 
         public int bXOffset = -3;
@@ -128,7 +139,7 @@ namespace breakingBread.breakingBread.Game
             {
                 if (game.selectedItem != this)
                 {
-                    Console.WriteLine("Pressed");
+                    //Console.WriteLine("Pressed");
                     game.selectedItem = this;
                 }
             }
@@ -142,7 +153,13 @@ namespace breakingBread.breakingBread.Game
         bool generateHighlight(string bmp)
         {
             //Initializing our main bitmap
-            bit = new System.Drawing.Bitmap(game.assetPath + bmp);
+            try
+            {
+                bit = new System.Drawing.Bitmap(game.assetPath + bmp);
+            } catch(Exception ex)
+            {
+                return false;
+            }
 
             for (int _x = 0; _x < bit.Width; _x++)
             {

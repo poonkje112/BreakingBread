@@ -46,7 +46,7 @@ namespace breakingBread.breakingBread.Game.Scenes
 
         void switchBomb()
         {
-            Console.WriteLine("sCalled");
+            //Console.WriteLine("sCalled");
             game.sceneManager.sceneIndex++;
         }
 
@@ -56,7 +56,7 @@ namespace breakingBread.breakingBread.Game.Scenes
             {
                 game.gState = gameState.baguEmpty;
                 game.inventory.Add(new Item("sample.png"));
-                Console.WriteLine("Added item! Inventory count = {0}", game.inventory.Count);
+                //Console.WriteLine("Added item! Inventory count = {0}", game.inventory.Count);
             }
         }
 
@@ -64,7 +64,7 @@ namespace breakingBread.breakingBread.Game.Scenes
         {
             if(game.gState == gameState.bombDefused)
             {
-                game.sceneManager.sceneIndex = game.scenes.Count - 2;
+                game.sceneManager.sceneIndex = game.sceneManager.sceneIndex + 2;
             }
         }
 

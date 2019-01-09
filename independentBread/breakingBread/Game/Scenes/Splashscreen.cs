@@ -21,7 +21,7 @@ namespace breakingBread.breakingBread.Game.Scenes
             if (frameCount == 120)
                 game.sceneManager.sceneIndex++;
             frameCount++;
-            Console.WriteLine(frameCount);
+            //Console.WriteLine(frameCount);
         }
     }
 }

@@ -81,7 +81,7 @@ namespace breakingBread.breakingBread.Game
                 //if (x == mX && y == mY)
                 if(x >= mX && x <= (mX + 20) && y >= mY && y <= (mY + 20))
                 {
-                    Console.WriteLine("Called");
+                    //Console.WriteLine("Called");
                     callback.Invoke();
                     moveState = isMoving.n;
                 }
@@ -107,7 +107,7 @@ namespace breakingBread.breakingBread.Game
                 mH = height;
                 callback = c;
                 moveState = isMoving.y;
-                Console.WriteLine("Moving to -> X: {0} | Y: {1} | W: {2} | H: {3}", mX, mY, mW, mH);
+                //Console.WriteLine("Moving to -> X: {0} | Y: {1} | W: {2} | H: {3}", mX, mY, mW, mH);
             }
         }
 
