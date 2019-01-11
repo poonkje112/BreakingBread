@@ -18,7 +18,7 @@ namespace breakingBread.breakingBread.Game.gameObjects
             }
             else
             {
-                Console.WriteLine("Could not find texture, using mising texture...");
+                game.util.Log("Could not find texture, using mising texture...");
                 new MissingTexture(0, 0, game.WIDTH, game.HEIGHT);
                 missingTexture = true;
             }

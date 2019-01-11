@@ -15,7 +15,7 @@ namespace breakingBread.breakingBread.Game.Scenes
         public override void startScene()
         {
             new Background("room2.png");
-            lamp = new pInteractable(moveTo, 552, 0, 31, 169, "lamp.png", true, 255, 0, 0);
+            lamp = new pInteractable(moveTo, 537, 0, 31, 169, "lamp.png", true, 255, 0, 0);
 
             Inventory inventory = new Inventory();
             
@@ -23,8 +23,12 @@ namespace breakingBread.breakingBread.Game.Scenes
 
         void moveTo()
         {
-            Console.WriteLine("Hello World!");
-            lamp.y += 250;
+            if (game.gState != gameState.lampClicked)
+            {
+                lamp.y += 355;
+                game.gState = gameState.lampClicked;
+            }
+
         }
 
         public override void updateScene()

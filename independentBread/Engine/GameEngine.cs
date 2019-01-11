@@ -466,7 +466,7 @@ namespace GameEngine
         private string m_IconPath = "../../Assets/icon.ico";
         private int m_Width = 800;
         private int m_Height = 600;
-        private SharpDX.Color m_ClearColor = new SharpDX.Color(255, 255, 255);
+        private SharpDX.Color m_ClearColor = new SharpDX.Color(206, 212, 255, 0);
 
         private float m_Angle = 0.0f;
         private Vector2f m_Scale = new Vector2f(1.0f, 1.0f);
@@ -570,7 +570,6 @@ namespace GameEngine
                                        swapChainDesc,
                                        out device,
                                        out m_SwapChain);
-
             //We don't need this ref as we only use 2D
             device.Dispose();
 
@@ -593,6 +592,8 @@ namespace GameEngine
                 if (e.Alt && e.KeyCode == Keys.Enter)
                     m_SwapChain.IsFullScreen = !m_SwapChain.IsFullScreen;
             };
+
+
         }
 
         public void Run()
@@ -698,7 +699,7 @@ namespace GameEngine
         public static GameEngine GetInstance()
         {
             if (m_Instance == null) { m_Instance = new GameEngine(); }
-                return m_Instance;
+            return m_Instance;
         }
 
         public float GetDeltaTime()
@@ -731,11 +732,11 @@ namespace GameEngine
 
         public void SetIcon(string iconPath)
         {
-            #if DEBUG
-                m_IconPath = ("../../Assets/" + iconPath);
-            #else
+#if DEBUG
+            m_IconPath = ("../../Assets/" + iconPath);
+#else
                 m_IconPath = "./Assets/" + iconPath;
-            #endif
+#endif
         }
 
         public void SetScreenWidth(int width)
@@ -1094,7 +1095,7 @@ namespace GameEngine
 
             SharpDX.Direct2D1.Bitmap D2DBitmap = bitmap.D2DBitmap;
 
-            if (sourceWidth == 0)  sourceWidth = D2DBitmap.Size.Width;
+            if (sourceWidth == 0) sourceWidth = D2DBitmap.Size.Width;
             if (sourceHeight == 0) sourceHeight = D2DBitmap.Size.Height;
 
             //Adjust the transform matrix
@@ -1519,7 +1520,7 @@ namespace GameEngine
 
             //Totally unsubscribe this object during inactivity in order to save CPU cycles.
             if (isActive == true) { m_GameEngine.SubscribeGameObject(this); }
-            else                  { m_GameEngine.UnsubscribeGameObject(this); }
+            else { m_GameEngine.UnsubscribeGameObject(this); }
 
             m_IsActive = isActive;
         }
@@ -1544,11 +1545,11 @@ namespace GameEngine
 
         public Bitmap(string filePath)
         {
-            #if DEBUG
-                LoadBitmap("../../Assets/" + filePath);
-            #else
+#if DEBUG
+            LoadBitmap("../../Assets/" + filePath);
+#else
                 LoadBitmap("./Assets/" + filePath);
-            #endif
+#endif
         }
 
         public void Dispose()
@@ -1585,14 +1586,17 @@ namespace GameEngine
             FormatConverter converter = new FormatConverter(imagingFactory);
             converter.Initialize(frame, SharpDX.WIC.PixelFormat.Format32bppPRGBA);
 
+            //Remove me
+            //SetTransparancyColor(new Color(206, 212, 255, 0));
+
+            //GameEngine.GetInstance().RenderTarget->SetAntialiasMode(D2D1_ANTIALIAS_MODE_ALIASED);
             RenderTarget renderTarget = GameEngine.GetInstance().RenderTarget;
             m_D2DBitmap = SharpDX.Direct2D1.Bitmap1.FromWicBitmap(renderTarget, converter);
         }
 
         //private void SetTransparancyColor(Color color)
         //{
-            //To be made, for now use PNG
-            //new SharpDX.Direct2D1.Effects.ColorManagement()
+        //    new SharpDX.Direct2D1.Effects.ColorManagement(new SharpDX.Direct2D1.DeviceContext());
         //}
 
         public float GetWidth()
@@ -1642,7 +1646,7 @@ namespace GameEngine
             m_TextFormat = new SharpDX.DirectWrite.TextFormat(fontFactory, fontName, size);
             fontFactory.Dispose();
         }
-        
+
         public void SetHorizontalAlignment(Alignment alignment)
         {
             m_TextFormat.TextAlignment = (SharpDX.DirectWrite.TextAlignment)alignment;
@@ -1863,12 +1867,12 @@ namespace GameEngine
                 if (m_BorderCornerRadius.X == 0 && m_BorderCornerRadius.Y == 0)
                 {
                     if (m_ShowBackground) { DrawRectangleButton(bgColor); }
-                    if (m_ShowBorder)     { DrawRectangleButtonBorder(borderColor); }
+                    if (m_ShowBorder) { DrawRectangleButtonBorder(borderColor); }
                 }
                 else
                 {
                     if (m_ShowBackground) { DrawRoundedRectangleButton(bgColor); }
-                    if (m_ShowBorder)     { DrawRoundedRectangleButtonBorder(borderColor); }
+                    if (m_ShowBorder) { DrawRoundedRectangleButtonBorder(borderColor); }
                 }
             }
 
@@ -1909,7 +1913,7 @@ namespace GameEngine
         {
             float yOffset = 0;
             if (m_IsHovering) yOffset += m_Rectangle.Height;
-            if (m_IsClicked)  yOffset += m_Rectangle.Height;
+            if (m_IsClicked) yOffset += m_Rectangle.Height;
 
             GAME_ENGINE.DrawBitmap(m_Bitmap, m_Rectangle.X, m_Rectangle.Y, 0, yOffset, m_Rectangle.Width, m_Rectangle.Height);
         }
@@ -2063,11 +2067,11 @@ namespace GameEngine
 
         public Audio(string filePath)
         {
-            #if DEBUG
-                LoadAudio("../../Assets/" + filePath);
-            #else
+#if DEBUG
+            LoadAudio("../../Assets/" + filePath);
+#else
                 LoadAudio("./Assets/" + filePath);
-            #endif
+#endif
         }
 
         private void LoadAudio(string filePath)
@@ -2076,9 +2080,10 @@ namespace GameEngine
             {
                 //Make sure all audio uses the same samplerate
                 WaveToSampleProvider convStream = new WaveToSampleProvider(new MediaFoundationResampler(new SampleToWaveProvider(audioFileReader),
-                                                                                                        WaveFormat.CreateIeeeFloatWaveFormat(44100, 2)) { ResamplerQuality = 60 });
+                                                                                                        WaveFormat.CreateIeeeFloatWaveFormat(44100, 2))
+                { ResamplerQuality = 60 });
 
-                
+
                 m_WaveFormat = convStream.WaveFormat;
 
                 List<float> wholeFile = new List<float>((int)(audioFileReader.Length / 4));

@@ -25,20 +25,17 @@ namespace breakingBread.breakingBread.Game
 
         public Item(string bitmap)
         {
-            if (bitmap != null)
-            {
-                bmp = new Bitmap(bitmap);
-                bmpName = bitmap;
-            }
+            bmpName = bitmap;
             LoadItem();
         }
 
         public void LoadItem()
         {
-            if (bmp == null)
-                missing = new MissingTexture(0, 0, 50, 50);
-            else
+            if (bmpName != "" || bmpName != string.Empty)
+            {
                 bmp = new Bitmap(bmpName);
+            } else if (bmp == null)
+                missing = new MissingTexture(0, 0, 50, 50);
 
 
             if (generateHighlight(bmpName))
@@ -47,7 +44,7 @@ namespace breakingBread.breakingBread.Game
             }
             else
             {
-                Console.WriteLine("Could not generate highlight!");
+                game.util.Log("Could not generate highlight!");
                 Subscribe(this);
                 doHoverAnimation = false;
             }
@@ -139,7 +136,6 @@ namespace breakingBread.breakingBread.Game
             {
                 if (game.selectedItem != this)
                 {
-                    //Console.WriteLine("Pressed");
                     game.selectedItem = this;
                 }
             }
@@ -156,7 +152,8 @@ namespace breakingBread.breakingBread.Game
             try
             {
                 bit = new System.Drawing.Bitmap(game.assetPath + bmp);
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return false;
             }

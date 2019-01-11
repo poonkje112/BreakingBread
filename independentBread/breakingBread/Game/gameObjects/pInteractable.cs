@@ -79,7 +79,7 @@ namespace breakingBread.breakingBread.Game
             }
             else
             {
-                Console.WriteLine("Could not find texture, using mising texture...");
+                game.util.Log("Could not find texture, using mising texture...");
                 new MissingTexture(x, y, w, h);
                 missingTexture = true;
             }
@@ -260,7 +260,6 @@ namespace breakingBread.breakingBread.Game
         public override void Destroy()
         {
             exiting = true;
-            //Console.WriteLine("Called");
 
             if (hoverBitmap != null)
                 hoverBitmap.Dispose();

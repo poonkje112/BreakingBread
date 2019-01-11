@@ -22,10 +22,10 @@ namespace breakingBread.breakingBread.Game
 
         public void warmupScenes()
         {
-            Console.WriteLine("Warming up scenes...");
+            game.util.Log("Warming up scenes...");
+            game.scenes.Add(room1);
             game.scenes.Add(splash);
             game.scenes.Add(menu);
-            game.scenes.Add(room1);
             game.scenes.Add(bomb);
             game.scenes.Add(room2);
             game.scenes.Add(credits);

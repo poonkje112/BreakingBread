@@ -18,7 +18,7 @@ namespace breakingBread.breakingBread.Game.Scenes
         Random rand = new Random();
         public override void startScene()
         {
-            Console.WriteLine("Room 1");
+            game.util.Log("Room 1");
             bck = new Background("Room_1_sketch.png");
             Bomb = new pInteractable(bombCallback, 40, 411, 85, 171, "bomb.png", true, 255, 0, 0);
             Vent = new pInteractable(ventCallback, 511, 340, 257, 200, "vent.png", true, 255, 0, 0);
@@ -46,7 +46,6 @@ namespace breakingBread.breakingBread.Game.Scenes
 
         void switchBomb()
         {
-            //Console.WriteLine("sCalled");
             game.sceneManager.sceneIndex++;
         }
 
@@ -56,7 +55,7 @@ namespace breakingBread.breakingBread.Game.Scenes
             {
                 game.gState = gameState.baguEmpty;
                 game.inventory.Add(new Item("sample.png"));
-                //Console.WriteLine("Added item! Inventory count = {0}", game.inventory.Count);
+                game.util.Log("Added item! Inventory count = {0}", game.inventory.Count);
             }
         }
 

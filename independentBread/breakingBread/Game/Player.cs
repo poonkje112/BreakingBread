@@ -18,6 +18,8 @@ namespace breakingBread.breakingBread.Game
         public delegate void iCallback();
         Bitmap bmp;
         iCallback callback;
+        public float scaleX = 1f, scaleY = 1f;
+
 
 
         public Player(int _x, int _y, int width, int height, int animationIndex)
@@ -81,7 +83,6 @@ namespace breakingBread.breakingBread.Game
                 //if (x == mX && y == mY)
                 if(x >= mX && x <= (mX + 20) && y >= mY && y <= (mY + 20))
                 {
-                    //Console.WriteLine("Called");
                     callback.Invoke();
                     moveState = isMoving.n;
                 }
@@ -90,7 +91,7 @@ namespace breakingBread.breakingBread.Game
         }
         public override void pDraw()
         {
-            game.engine.DrawBitmap(bmp, new Vector2f(x, y));
+            game.engine.DrawBitmap(bmp, new Vector2f(x, y), new Vector2f(scaleX, scaleY));
         }
         public void moveTo(iCallback c, int _x, int _y)
         {
@@ -107,7 +108,9 @@ namespace breakingBread.breakingBread.Game
                 mH = height;
                 callback = c;
                 moveState = isMoving.y;
-                //Console.WriteLine("Moving to -> X: {0} | Y: {1} | W: {2} | H: {3}", mX, mY, mW, mH);
+                game.util.Log("Moving to -> X: {0} | Y: {1} | W: {2} | H: {3}", mX, mY, mW, mH);
+                scaleX = 0.5f;
+                scaleY = 1.5f;
             }
         }
 
