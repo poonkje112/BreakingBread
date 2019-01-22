@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="breakingBread\Game\gameObjects\Background.cs" />
+    <Compile Include="breakingBread\Game\gameObjects\pBitmap.cs" />
     <Compile Include="breakingBread\Game\Inventory.cs" />
     <Compile Include="breakingBread\Game\gameObjects\Item.cs" />
     <Compile Include="breakingBread\Game\MainGameClass.cs" />

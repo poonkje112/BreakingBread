@@ -49,6 +49,7 @@ namespace breakingBread.breakingBread.Game
         public gameState gState;
         public Utils util = new Utils();
         public Item selectedItem = null;
+        public List<Dimension> dimensions;
 
 
         public bool goUpdating = false;

@@ -1,4 +1,6 @@
 ﻿using breakingBread.breakingBread.Game;
+using breakingBread.breakingBread.Game.util;
+using System;
 
 namespace GameEngine
 {
@@ -16,6 +18,12 @@ namespace GameEngine
         {
             scenes.warmupScenes();
             game.sceneManager.Start();
+            game.util.LoadTextureMap();
+            foreach(Dimension d in game.util.dimensions)
+            {
+                game.util.Log("X: {0} Y: {1} W: {2} H: {3}", d.x, d.y, d.w, d.h);
+            }
+            game.dimensions = game.util.dimensions;
 
         }
 
