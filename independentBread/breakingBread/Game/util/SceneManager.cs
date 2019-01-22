@@ -86,6 +86,7 @@ namespace breakingBread.breakingBread.Game.util
             {
                 game.sortedGameObjects[i].pDraw();
             }
+            game.scenes[curSceneIndex].drawScene();
             game.engine.SetColor(0, 0, 0, sceneAlpha);
             game.engine.FillRectangle(0, 0, game.WIDTH, game.HEIGHT);
             game.engine.SetColor(0, 0, 0, 255);

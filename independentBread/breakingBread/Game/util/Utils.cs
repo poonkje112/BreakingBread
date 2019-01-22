@@ -33,4 +33,15 @@ namespace breakingBread.breakingBread.Game.util
         }
 
     }
+
+    public struct Dimension
+    {
+        private int X, Y, W, H;
+
+        public int x { get { return X; } set { X = value; } }
+        public int y { get { return Y; } set { Y = value; } }
+        public int w { get { return W; } set { W = value; } }
+        public int h { get { return H; } set { H = value; } }
+    }
+
 }

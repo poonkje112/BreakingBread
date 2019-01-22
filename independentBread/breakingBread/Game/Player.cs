@@ -109,8 +109,8 @@ namespace breakingBread.breakingBread.Game
                 callback = c;
                 moveState = isMoving.y;
                 game.util.Log("Moving to -> X: {0} | Y: {1} | W: {2} | H: {3}", mX, mY, mW, mH);
-                scaleX = 0.5f;
-                scaleY = 1.5f;
+                //scaleX = 0.5f;
+                //scaleY = 1.5f;
             }
         }
 

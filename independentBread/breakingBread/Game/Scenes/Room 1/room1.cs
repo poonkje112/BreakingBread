@@ -16,6 +16,8 @@ namespace breakingBread.breakingBread.Game.Scenes
         MainGameClass game = MainGameClass.Instance;
         Player p;
         Random rand = new Random();
+        pBitmap test;
+        Bitmap testbit;
         public override void startScene()
         {
             game.util.Log("Room 1");
@@ -27,6 +29,9 @@ namespace breakingBread.breakingBread.Game.Scenes
             p = new Player(game.WIDTH / 2 - (int)37.5, 550, 75, 75, 0);
             Bomb.setHover(true);
             game.wState = (wireState)(rand.Next(Enum.GetNames(typeof(wireState)).Length));
+
+            test = new pBitmap(2);
+            testbit = test.getBitmap();
 
             Inventory inventory = new Inventory();
         }
@@ -74,7 +79,7 @@ namespace breakingBread.breakingBread.Game.Scenes
 
         public override void drawScene()
         {
-            
+            //game.engine.DrawBitmap(testbit, 50, 50);
         }
 
         public override void unLoadScene()

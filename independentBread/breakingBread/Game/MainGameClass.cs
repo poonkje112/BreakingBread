@@ -49,6 +49,7 @@ namespace breakingBread.breakingBread.Game
         public gameState gState;
         public Utils util = new Utils();
         public Item selectedItem = null;
+        List<Dimension> bitmaps = new List<Dimension>();
 
 
         public bool goUpdating = false;

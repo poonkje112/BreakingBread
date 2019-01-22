@@ -31,6 +31,5 @@ namespace breakingBread.breakingBread.Game
             game.scenes.Add(credits);
             game.scenes.Add(death);
         }
-
     }
 }
