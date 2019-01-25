@@ -1087,8 +1087,18 @@ namespace GameEngine
             DrawBitmap(bitmap, position.X, position.Y, 0, 0, 0, 0, scale);
         }
 
+        public void DrawBitmap(Bitmap bitmap, Vector2f position, Vector2f scale, Rectanglef rect)
+        {
+            DrawBitmap(bitmap, position.X, position.Y, rect.X, rect.Y, rect.Width, rect.Height, scale);
+        }
+
+        public void DrawBitmap(Bitmap bitmap, Vector2f position, Vector2f scale, Rectanglef rect, bool flip)
+        {
+            DrawBitmap(bitmap, position.X, position.Y, rect.X, rect.Y, rect.Width, rect.Height, scale, flip);
+        }
+
         //TODO Make my own version of the bitmap system - Aaron Knoop
-        public void DrawBitmap(Bitmap bitmap, float x, float y, float sourceX, float sourceY, float sourceWidth, float sourceHeight, Vector2f scale)
+        public void DrawBitmap(Bitmap bitmap, float x, float y, float sourceX, float sourceY, float sourceWidth, float sourceHeight, Vector2f scale, bool flip = false)
         {
             if (!PaintCheck())
                 return;
@@ -1097,12 +1107,19 @@ namespace GameEngine
 
             if (sourceWidth == 0) sourceWidth = D2DBitmap.Size.Width;
             if (sourceHeight == 0) sourceHeight = D2DBitmap.Size.Height;
-
             //Adjust the transform matrix
-            SetTransformMatrix(new Vector2f(x, y), m_Angle, scale, new Vector2f(sourceWidth * 0.5f, sourceHeight * 0.5f));
+            if (!flip)
+            {
+                SetTransformMatrix(new Vector2f(x, y), m_Angle, scale, new Vector2f(sourceWidth * 0.5f, sourceHeight * 0.5f));
+            }
+            else
+            {
+                SetTransformMatrix(new Vector2f(x, y), m_Angle, new Vector2f(-scale.X, scale.Y), new Vector2f(sourceWidth * 0.5f, sourceHeight * 0.5f));
+
+            }
 
             RawRectangleF sourceRect = new RawRectangleF(sourceX, sourceY, (sourceX + sourceWidth), (sourceY + sourceHeight));
-            m_RenderTarget.DrawBitmap(D2DBitmap, m_CurrentBrush.Color.A, SharpDX.Direct2D1.BitmapInterpolationMode.NearestNeighbor, sourceRect);
+            m_RenderTarget.DrawBitmap(D2DBitmap, m_CurrentBrush.Color.A, SharpDX.Direct2D1.BitmapInterpolationMode.Linear, sourceRect);
 
             //Reset the transform matrix
             ResetTransformMatrix();
