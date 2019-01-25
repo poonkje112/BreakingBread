@@ -12,19 +12,26 @@ namespace breakingBread.breakingBread.Game.Scenes
     class room1 : pScene
     {
         Background bck;
-        pInteractable Vent, Bomb, Bagu;
+        pInteractable Vent, Bomb, Bagu, lamp;
         MainGameClass game = MainGameClass.Instance;
         Player p;
         Random rand = new Random();
+        
         public override void startScene()
         {
             game.util.Log("Room 1");
             bck = new Background("Room_1_sketch.png");
-            Bomb = new pInteractable(bombCallback, 40, 411, 85, 171, "bomb.png", true, 255, 0, 0);
-            Vent = new pInteractable(ventCallback, 511, 340, 257, 200, "vent.png", true, 255, 0, 0);
-            Bagu = new pInteractable(baguCallback, 860, 537, 288, 78, "bagu.png", true, 255, 0, 0);
+            Bomb = new pInteractable(bombCallback, 40, 411, 85, 171, "bomb.png");
+            Bomb.highlightAlpha = 255;
+            Vent = new pInteractable(ventCallback, 511, 340, 257, 200, "vent.png");
+            Vent.highlightAlpha = 255;
+            Bagu = new pInteractable(baguCallback, 860, 537, 288, 78, "bagu.png");
+            Bagu.highlightAlpha = 255;
+            lamp = new pInteractable(null, 230, 160, 70, 70);
+            lamp.doHoverAnimation = false;
+
             new Inventory();
-            p = new Player(game.WIDTH / 2 - (int)37.5, 550, 75, 75, 0);
+            p = new Player(game.WIDTH / 2 - (int)37.5, 550, .2f);
             Bomb.setHover(true);
             game.wState = (wireState)(rand.Next(Enum.GetNames(typeof(wireState)).Length));
 

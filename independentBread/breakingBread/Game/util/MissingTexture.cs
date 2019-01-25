@@ -10,7 +10,7 @@ namespace breakingBread.breakingBread.Game.util
     {
         MainGameClass game = MainGameClass.Instance;
 
-        public MissingTexture(int _x, int _y, int width, int height)
+        public MissingTexture(float _x, float _y, float width, float height)
         {
             x = _x;
             y = _y;
@@ -36,7 +36,7 @@ namespace breakingBread.breakingBread.Game.util
 
         public override void Destroy()
         {
-            
+      
         }
     }
 }

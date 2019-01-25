@@ -20,7 +20,7 @@ namespace breakingBread.breakingBread.Game
     }
     class Player : pGameObject
     {
-        int animation, mX, mY, mW, mH;
+        float mX, mY, mW, mH;
         float movementSpeed = 200f;
         public isMoving moveState;
         public movingDir dir;
@@ -38,16 +38,13 @@ namespace breakingBread.breakingBread.Game
 
 
 
-        public Player(int _x, int _y, int width, int height, int animationIndex)
+        public Player(int _x, int _y, float _scale)
         {
             animationSheet = new Bitmap("textureMap.png");
             x = _x;
             y = _y;
-            w = width;
-            h = height;
-            animation = animationIndex;
             LoadSprites();
-            scale = .2f;
+            scale = _scale;
             Subscribe(this);
         }
 
@@ -225,13 +222,17 @@ namespace breakingBread.breakingBread.Game
             {
                 game.engine.DrawBitmap(animationSheet, new Vector2f(x + ((WalkingVert[0].w - WalkingVert[0].x) * scale), y), new Vector2f(scale, scale), new Rectanglef(WalkingVert[currentFrame].x, WalkingVert[currentFrame].y, WalkingVert[currentFrame].w, WalkingVert[currentFrame].h), true);
             }
+            else if (dir == movingDir.right)
+            {
+                game.engine.DrawBitmap(animationSheet, new Vector2f(x, y), new Vector2f(scale, scale), new Rectanglef(WalkingVert[currentFrame].x, WalkingVert[currentFrame].y, WalkingVert[currentFrame].w, WalkingVert[currentFrame].h), false);
+            }
         }
-        public void moveTo(iCallback c, int _x, int _y)
+        public void moveTo(iCallback c, float _x, float _y)
         {
             moveTo(c, _x, _y, w, h);
         }
 
-        public void moveTo(iCallback c, int _x, int _y, int width, int height)
+        public void moveTo(iCallback c, float _x, float _y, float width, float height)
         {
             if (moveState == isMoving.n)
             {

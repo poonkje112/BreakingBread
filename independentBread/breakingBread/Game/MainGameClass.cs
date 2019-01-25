@@ -15,6 +15,7 @@ namespace breakingBread.breakingBread.Game
         begin = 0,
         baguEmpty,
         bombDefused,
+        lampMoving,
         lampClicked,
         endGame
     }

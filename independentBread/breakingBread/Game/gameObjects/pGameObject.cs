@@ -1,4 +1,5 @@
 ﻿using breakingBread.breakingBread.Game;
+using System;
 
 namespace breakingBread.breakingBread
 {
@@ -9,7 +10,7 @@ namespace breakingBread.breakingBread
         public int ID = -1;
         public int layer = 0;
         public float scale = .25f;
-        public int x, y, w, h;
+        public float x, y, w, h;
 
         public virtual void pUpdate() { }
 
@@ -36,13 +37,21 @@ namespace breakingBread.breakingBread
         /// Unsubscribe the gameObject from the MainGameLoop
         /// </summary>
         /// <param name="gameObjectIndex">The index of the gameObject you want to remove</param>
-        public void Unsubscribe(int _ID)
+        public void Unsubscribe(pGameObject gameObject)
         {
-            for(int i = 0; i < game.gameObjects.Count; i++) { 
-                if(game.gameObjects[i].ID == _ID)
+            try
+            {
+                for (int i = 0; i < game.gameObjects.Count; i++)
                 {
-                    game.gameObjects[i].Destroy();
+                    if (game.gameObjects[i].ID == gameObject.ID)
+                    {
+                        game.gameObjects[i].Destroy();
+                        game.gameObjects.RemoveAt(i);
+                    }
                 }
+            } catch(Exception ex)
+            {
+                Unsubscribe(gameObject);
             }
         }
     }

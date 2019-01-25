@@ -14,6 +14,7 @@ namespace breakingBread.breakingBread.Game
 
         public Color color = Color.White;
         MainGameClass game = MainGameClass.Instance;
+        MissingTexture missing;
 
         #region variables
         #region public
@@ -22,6 +23,7 @@ namespace breakingBread.breakingBread.Game
         public bool visible = true;
         public int bXOffset = -3;
         public int bYOffset = -2;
+        public int highlightAlpha = 150;
 
         #endregion
 
@@ -48,12 +50,12 @@ namespace breakingBread.breakingBread.Game
 
         public pInteractable(iCallback c, int _x, int _y, int _w, int _h)
         {
-            Load(c, _x, _y, _w, _h, "", false, 0, 0, 0);
+            Load(c, _x, _y, _w, _h, "", false, 255, 255, 255);
         }
 
         public pInteractable(iCallback c, int _x, int _y, int _w, int _h, string _bmpName)
         {
-            Load(c, _x, _y, _w, _h, _bmpName, false, 0, 0, 0);
+            Load(c, _x, _y, _w, _h, _bmpName, false, 255, 255, 255);
         }
         public pInteractable(iCallback c, int _x, int _y, int _w, int _h, string _bmpName, bool gHighlight, int hR, int hG, int hB)
         {
@@ -80,8 +82,9 @@ namespace breakingBread.breakingBread.Game
             else
             {
                 game.util.Log("Could not find texture, using mising texture...");
-                new MissingTexture(x, y, w, h);
+                missing = new MissingTexture(x, y, w, h);
                 missingTexture = true;
+                missing.layer = layer + 1;
             }
             if (c == null)
             {
@@ -136,21 +139,22 @@ namespace breakingBread.breakingBread.Game
         public int frameCount = 0;
         public override void pUpdate()
         {
-            mX = game.engine.GetMousePosition().X;
-            mY = game.engine.GetMousePosition().Y;
-
-            if (mX >= x && mX <= (x + w) && mY >= y && mY <= (y + h))
-            {
-                doCallbackChecks();
-            }
-            else
-            {
-                hoverAnimate = false;
-            }
-
             if (doHoverAnimation)
             {
-                if (hoverAnimate && hoverAlpha < 200)
+                mX = game.engine.GetMousePosition().X;
+                mY = game.engine.GetMousePosition().Y;
+
+                if (mX >= x && mX <= (x + w) && mY >= y && mY <= (y + h))
+                {
+                    doCallbackChecks();
+                }
+                else
+                {
+                    hoverAnimate = false;
+                }
+
+
+                if (hoverAnimate && hoverAlpha < highlightAlpha)
                 {
                     frameCount++;
                     if (frameCount == 1)
@@ -170,13 +174,21 @@ namespace breakingBread.breakingBread.Game
                 }
             }
 
-            if (hoverAlpha > 200)
+            if (hoverAlpha > highlightAlpha)
             {
-                hoverAlpha = 200;
+                hoverAlpha = highlightAlpha;
             }
             else if (hoverAlpha < 0)
             {
                 hoverAlpha = 0;
+            }
+
+            if (missingTexture)
+            {
+                missing.x = x;
+                missing.y = y;
+                missing.w = w;
+                missing.h = h;
             }
 
         }
@@ -263,13 +275,21 @@ namespace breakingBread.breakingBread.Game
 
             if (hoverBitmap != null)
                 hoverBitmap.Dispose();
+
             hoverBitmap = null;
 
             if (File.Exists(game.assetPath + "Hover_" + bmpName))
                 File.Delete(game.assetPath + "Hover_" + bmpName);
 
-            bitmap.Dispose();
-            bitmap = null;
+            if (!missingTexture)
+            {
+                bitmap.Dispose();
+                bitmap = null;
+            }
+            else
+            {
+                missing.Unsubscribe(missing);
+            }
             highlightBmp = null;
             GC.Collect();
         }

@@ -3,9 +3,6 @@ using GameEngine;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace breakingBread.breakingBread.Game
 {
@@ -16,38 +13,35 @@ namespace breakingBread.breakingBread.Game
         MainGameClass game = MainGameClass.Instance;
         Bitmap hoverBitmap;
         private int mX, mY;
-        int hoverR = 255, hoverG = 0, hoverB = 0;
+        int hoverR = 255, hoverG = 255, hoverB = 255;
         bool doHoverAnimation = true;
         float hoverAlpha = 0f;
         bool hoverAnimate = false;
         string bmpName;
+        bool missingTexture = false;
 
 
         public Item(string bitmap)
         {
             bmpName = bitmap;
             LoadItem();
+            layer = 100;
         }
 
         public void LoadItem()
         {
-            if (bmpName != "" || bmpName != string.Empty)
+            if (bmpName != "" && bmpName != string.Empty && File.Exists(game.assetPath + bmpName))
             {
                 bmp = new Bitmap(bmpName);
-            } else if (bmp == null)
-                missing = new MissingTexture(0, 0, 50, 50);
-
-
-            if (generateHighlight(bmpName))
-            {
-                Subscribe(this);
             }
             else
             {
-                game.util.Log("Could not generate highlight!");
-                Subscribe(this);
-                doHoverAnimation = false;
+                missing = new MissingTexture(0, 0, 50, 50);
+                missingTexture = true;
             }
+            generateHighlight(bmpName);
+            Subscribe(this);
+
         }
 
         public int bXOffset = -3;
@@ -59,29 +53,28 @@ namespace breakingBread.breakingBread.Game
             w = width;
             h = height;
 
-            if (bmp == null)
+            if (missingTexture)
             {
                 missing.x = x;
                 missing.y = y;
                 missing.w = w;
                 missing.h = h;
             }
-            else
+
+            if (doHoverAnimation)
             {
-                if (doHoverAnimation)
+                game.engine.SetColor(hoverR, hoverG, hoverB, (int)hoverAlpha);
+                if (!missingTexture)
                 {
-                    game.engine.SetColor(hoverR, hoverG, hoverB, (int)hoverAlpha);
-                    if (hoverBitmap != null)
-                    {
-                        game.engine.DrawBitmap(hoverBitmap, x + bXOffset, y + bYOffset);
-                    }
-                    else
-                    {
-                        game.engine.FillRectangle(x - 4, y - 4, w + 8, h + 8);
-                    }
+                    Console.WriteLine("Called");
+                    game.engine.DrawBitmap(hoverBitmap, x + bXOffset, y + bYOffset);
+                    game.engine.DrawBitmap(bmp, x, y);
+                }
+                else
+                {
+                    game.engine.FillRectangle(x - 4, y - 4, w + 8, h + 8);
                 }
                 game.engine.SetColor(0, 0, 0, 255);
-                game.engine.DrawBitmap(bmp, x, y);
             }
         }
 
@@ -137,6 +130,10 @@ namespace breakingBread.breakingBread.Game
                 if (game.selectedItem != this)
                 {
                     game.selectedItem = this;
+
+                } else
+                {
+                    game.selectedItem = null;
                 }
             }
         }

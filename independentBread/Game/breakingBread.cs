@@ -43,7 +43,7 @@ namespace GameEngine
         public override void GameEnd()
         {
             for (int i = 0; i < game.gameObjects.Count; i++)
-                game.gameObjects[i].Unsubscribe(game.gameObjects[i].ID);
+                game.gameObjects[i].Unsubscribe(game.gameObjects[i]);
         }
 
         public override void Update()
