@@ -8,7 +8,6 @@ namespace breakingBread.breakingBread
         private MainGameClass game = MainGameClass.Instance;
         public int ID = -1;
         public int layer = 0;
-        public float scale = .25f;
         public int x, y, w, h;
 
         public virtual void pUpdate() { }
