@@ -1,6 +1,7 @@
 ﻿using breakingBread.breakingBread.Game.util;
 using GameEngine;
 using System;
+using System.Collections.Generic;
 
 namespace breakingBread.breakingBread.Game
 {
@@ -9,42 +10,95 @@ namespace breakingBread.breakingBread.Game
         n = 0,
         y
     }
+
+    enum movingDir
+    {
+        left = 0,
+        right,
+        up,
+        down
+    }
     class Player : pGameObject
     {
         int animation, mX, mY, mW, mH;
         float movementSpeed = 200f;
         public isMoving moveState;
+        public movingDir dir;
         MainGameClass game = MainGameClass.Instance;
         public delegate void iCallback();
         Bitmap bmp;
         iCallback callback;
         public float scaleX = 1f, scaleY = 1f;
 
+        public List<Dimension> idle = new List<Dimension>();
+        public List<Dimension> WalkingVert = new List<Dimension>();
+        public List<Dimension> walkingAway = new List<Dimension>();
+        public List<Dimension> walkingTowards = new List<Dimension>();
+        Bitmap animationSheet;
+
 
 
         public Player(int _x, int _y, int width, int height, int animationIndex)
         {
+            animationSheet = new Bitmap("textureMap.png");
             x = _x;
             y = _y;
             w = width;
             h = height;
             animation = animationIndex;
-            bmp = new Bitmap("Player.png");
+            LoadSprites();
+            scale = .2f;
             Subscribe(this);
+        }
+
+        private void LoadSprites()
+        {
+            idle.Add(new Dimension(1, 835, 251, 1227));
+            idle.Add(new Dimension(254, 835, 504, 1227));
+
+            WalkingVert.Add(new Dimension(2, 418, 250, 810));
+            WalkingVert.Add(new Dimension(255, 418, 503, 810));
+            WalkingVert.Add(new Dimension(508, 418, 756, 810));
+            WalkingVert.Add(new Dimension(761, 418, 1009, 810));
+            WalkingVert.Add(new Dimension(1014, 418, 1262, 810));
+            WalkingVert.Add(new Dimension(1267, 418, 1515, 810));
+            WalkingVert.Add(new Dimension(1520, 418, 1768, 810));
+            WalkingVert.Add(new Dimension(1773, 418, 2021, 810));
+            WalkingVert.Add(new Dimension(2026, 418, 2274, 810));
+            WalkingVert.Add(new Dimension(2279, 418, 2528, 810));
+            WalkingVert.Add(new Dimension(2532, 418, 2780, 810));
+            WalkingVert.Add(new Dimension(2785, 418, 3033, 810));
+
+            walkingTowards.Add(new Dimension(1, 1, 251, 393));
+            walkingTowards.Add(new Dimension(254, 1, 504, 393));
+            walkingTowards.Add(new Dimension(507, 1, 757, 393));
+            walkingTowards.Add(new Dimension(760, 1, 1010, 393));
+            walkingTowards.Add(new Dimension(1013, 1, 1263, 393));
+            walkingTowards.Add(new Dimension(1266, 1, 1516, 393));
+
+            walkingAway.Add(new Dimension(1519, 1, 1769, 393));
+            walkingAway.Add(new Dimension(1772, 1, 2022, 393));
+            walkingAway.Add(new Dimension(2025, 1, 2575, 393));
+            walkingAway.Add(new Dimension(2578, 1, 2528, 393));
+            walkingAway.Add(new Dimension(2531, 1, 2781, 393));
+            walkingAway.Add(new Dimension(2784, 1, 2721, 393));
         }
 
         public override void pUpdate()
         {
             if (moveState == isMoving.y)
             {
+
                 //Do movement/scale shizzle
                 if (x != mX && x > mX)
                 {
+                    dir = movingDir.left;
                     x -= (int)(movementSpeed * game.engine.GetDeltaTime());
                 }
 
                 if (x != mX && x < mX)
                 {
+                    dir = movingDir.right;
                     x += (int)(movementSpeed * game.engine.GetDeltaTime());
                 }
 
@@ -81,17 +135,96 @@ namespace breakingBread.breakingBread.Game
                 //}
 
                 //if (x == mX && y == mY)
-                if(x >= mX && x <= (mX + 20) && y >= mY && y <= (mY + 20))
+
+                if (wFrameCount == 4)
+                {
+                    wFrameCount = 0;
+                    if (currentFrame == 11)
+                    {
+                        currentFrame = 0;
+                    }
+                    else
+                    {
+                        currentFrame++;
+                    }
+                }
+                else
+                {
+                    wFrameCount++;
+                }
+
+                if (x >= mX && x <= (mX + 20) && y >= mY && y <= (mY + 20))
                 {
                     callback.Invoke();
                     moveState = isMoving.n;
                 }
 
             }
+            else
+            {
+                Blink();
+            }
+            //if (game.engine.GetKeyDown(Key.K))
+            //{
+            //    if (currentFrame != 11)
+            //        currentFrame++;
+            //    else
+            //        currentFrame = 0;
+            //    Console.WriteLine(currentFrame);
+            //}
+
         }
+        int wFrameCount = 0;
+
+        Random rand = new Random();
+        int blinkFrames = -1;
+        int frameCount = 0;
+        bool blinking = false;
+        private void Blink()
+        {
+            if (blinkFrames == -1)
+            {
+                blinkFrames = rand.Next(120, 660);
+            }
+
+            if (frameCount != blinkFrames)
+            {
+                frameCount++;
+            }
+            else
+            {
+                if (blinking == false)
+                {
+                    frameCount = 0;
+                    blinkFrames = 12;
+                }
+                else
+                {
+                    frameCount = 0;
+                    blinkFrames = -1;
+                }
+                blinking = !blinking;
+            }
+        }
+
+        int currentFrame = 0;
         public override void pDraw()
         {
-            game.engine.DrawBitmap(bmp, new Vector2f(x, y), new Vector2f(scaleX, scaleY));
+            if (moveState == isMoving.n)
+            {
+                if (!blinking)
+                {
+                    game.engine.DrawBitmap(animationSheet, new Vector2f(x, y), new Vector2f(scale, scale), new Rectanglef(idle[0].x, idle[0].y, idle[0].w, idle[0].h));
+                }
+                else
+                {
+                    game.engine.DrawBitmap(animationSheet, new Vector2f(x, y), new Vector2f(scale, scale), new Rectanglef(idle[1].x, idle[1].y, idle[1].w, idle[1].h));
+                }
+            }
+            else if (dir == movingDir.left)
+            {
+                game.engine.DrawBitmap(animationSheet, new Vector2f(x + ((WalkingVert[0].w - WalkingVert[0].x) * scale), y), new Vector2f(scale, scale), new Rectanglef(WalkingVert[currentFrame].x, WalkingVert[currentFrame].y, WalkingVert[currentFrame].w, WalkingVert[currentFrame].h), true);
+            }
         }
         public void moveTo(iCallback c, int _x, int _y)
         {
