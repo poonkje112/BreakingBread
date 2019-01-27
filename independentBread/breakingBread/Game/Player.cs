@@ -73,12 +73,12 @@ namespace breakingBread.breakingBread.Game
             walkingTowards.Add(new Dimension(1013, 1, 1263, 393));
             walkingTowards.Add(new Dimension(1266, 1, 1516, 393));
 
-            walkingAway.Add(new Dimension(1519, 1, 1769, 393));
-            walkingAway.Add(new Dimension(1772, 1, 2022, 393));
-            walkingAway.Add(new Dimension(2025, 1, 2575, 393));
-            walkingAway.Add(new Dimension(2578, 1, 2528, 393));
-            walkingAway.Add(new Dimension(2531, 1, 2781, 393));
-            walkingAway.Add(new Dimension(2784, 1, 2721, 393));
+            walkingAway.Add(new Dimension(2060, 1, 2310, 393));
+            walkingAway.Add(new Dimension(2313, 1, 2563, 393));
+            walkingAway.Add(new Dimension(2566, 1, 2861, 393));
+            walkingAway.Add(new Dimension(2819, 1, 3068, 393));
+            walkingAway.Add(new Dimension(3072, 1, 3321, 393));
+            walkingAway.Add(new Dimension(3325, 1, 3575, 393));
         }
 
         public override void pUpdate()
@@ -87,28 +87,27 @@ namespace breakingBread.breakingBread.Game
             {
 
                 //Do movement/scale shizzle
+                if (y != mY && y > mY)
+                {
+                    y -= ((movementSpeed * 0.5f) * game.engine.GetDeltaTime());
+                }
+
                 if (x != mX && x > mX)
                 {
                     dir = movingDir.left;
-                    x -= (int)(movementSpeed * game.engine.GetDeltaTime());
+                    x -= (movementSpeed * game.engine.GetDeltaTime());
+                }
+
+                if (y != mY && y < mY)
+                {
+                    y += ((movementSpeed * 0.5f) * game.engine.GetDeltaTime());
                 }
 
                 if (x != mX && x < mX)
                 {
                     dir = movingDir.right;
-                    x += (int)(movementSpeed * game.engine.GetDeltaTime());
+                    x += (movementSpeed * game.engine.GetDeltaTime());
                 }
-
-                if (y != mY && y > mY)
-                {
-                    y -= (int)(movementSpeed * game.engine.GetDeltaTime());
-                }
-
-                if (y != mY && y < mY)
-                {
-                    y += (int)(movementSpeed * game.engine.GetDeltaTime());
-                }
-
                 //Scaling
 
                 //if (w != mW && w > mW)
@@ -133,7 +132,7 @@ namespace breakingBread.breakingBread.Game
 
                 //if (x == mX && y == mY)
 
-                if (wFrameCount == 4)
+                if (wFrameCount == 2)
                 {
                     wFrameCount = 0;
                     if (currentFrame == 11)
@@ -152,8 +151,8 @@ namespace breakingBread.breakingBread.Game
 
                 if (x >= mX && x <= (mX + 20) && y >= mY && y <= (mY + 20))
                 {
-                    callback.Invoke();
                     moveState = isMoving.n;
+                    callback.Invoke();
                 }
 
             }

@@ -51,7 +51,9 @@ namespace breakingBread.breakingBread
                 }
             } catch(Exception ex)
             {
-                Unsubscribe(gameObject);
+                //Unsubscribe(gameObject);
+                Console.Clear();
+                Console.WriteLine(ex.ToString());
             }
         }
     }

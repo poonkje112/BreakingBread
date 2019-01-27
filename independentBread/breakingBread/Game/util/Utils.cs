@@ -201,6 +201,14 @@ namespace breakingBread.breakingBread.Game.util
 
         }
 
+        public void unsubscribeAll(MainGameClass g)
+        {
+            for(int i = 0; i < g.gameObjects.Count; i++)
+            {
+                g.gameObjects[i].Destroy();
+            }
+        }
+
         public void Log(object text, params object[] arg0)
         {
 #if DEBUG

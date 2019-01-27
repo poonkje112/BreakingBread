@@ -9,8 +9,8 @@ namespace GameEngine
         GameEngine engine;
         MainGameClass game;
         scenes scenes = new scenes();
-        string version = "ALPHA 2.0";
-        string buildDate = "9-1-2019";
+        string version = "Pre-Release 1.0";
+        string buildDate = "26-1-2019";
 
 
 

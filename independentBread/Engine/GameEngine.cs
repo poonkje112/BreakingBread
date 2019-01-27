@@ -1074,7 +1074,7 @@ namespace GameEngine
         }
         public void DrawBitmap(Bitmap bitmap, float x, float y, float sourceX, float sourceY, float sourceWidth, float sourceHeight)
         {
-            DrawBitmap(bitmap, x, y, 0, 0, 0, 0, m_Scale);
+            DrawBitmap(bitmap, x, y, sourceX, sourceY, sourceWidth, sourceHeight, m_Scale);
         }
 
         public void DrawBitmap(Bitmap bitmap, Vector2f position)
