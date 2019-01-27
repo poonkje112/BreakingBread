@@ -2,6 +2,10 @@
 using GameEngine;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace breakingBread.breakingBread.Game
 {
@@ -12,40 +16,38 @@ namespace breakingBread.breakingBread.Game
         MainGameClass game = MainGameClass.Instance;
         Bitmap hoverBitmap;
         private int mX, mY;
-        int hoverR = 255, hoverG = 255, hoverB = 255;
+        int hoverR = 255, hoverG = 0, hoverB = 0;
         bool doHoverAnimation = true;
         float hoverAlpha = 0f;
         bool hoverAnimate = false;
-        private int bX = -1, bY = -1, bW = -1, bH = -1;
-        Dimension bmpD;
-        bool missingTexture = false;
+        string bmpName;
 
 
-        public Item(Dimension _bmpD)
+        public Item(string bitmap)
         {
-            bmpD = _bmpD;
+            bmpName = bitmap;
             LoadItem();
-            layer = 100;
         }
 
         public void LoadItem()
         {
-            if (bmpD.x != -1 && bmpD.y != -1 && bmpD.w != -1 && bmpD.h != -1)
+            if (bmpName != "" || bmpName != string.Empty)
             {
-                bX = bmpD.x;
-                bY = bmpD.y;
-                bW = bmpD.w;
-                bH = bmpD.h;
-                bmp = new Bitmap("Asset_Sheet.png");
-                generateHighlight(bX, bY, bW, bH);
+                bmp = new Bitmap(bmpName);
+            } else if (bmp == null)
+                missing = new MissingTexture(0, 0, 50, 50);
+
+
+            if (generateHighlight(bmpName))
+            {
+                Subscribe(this);
             }
             else
             {
-                missing = new MissingTexture(0, 0, 50, 50);
-                missingTexture = true;
+                game.util.Log("Could not generate highlight!");
+                Subscribe(this);
+                doHoverAnimation = false;
             }
-            Subscribe(this);
-
         }
 
         public int bXOffset = -3;
@@ -57,29 +59,29 @@ namespace breakingBread.breakingBread.Game
             w = width;
             h = height;
 
-            if (missingTexture)
+            if (bmp == null)
             {
                 missing.x = x;
                 missing.y = y;
                 missing.w = w;
                 missing.h = h;
             }
-
-            if (doHoverAnimation)
+            else
             {
-                game.engine.SetColor(hoverR, hoverG, hoverB, (int)hoverAlpha);
-                if (!missingTexture)
+                if (doHoverAnimation)
                 {
-                    //Console.WriteLine("Called");
-                    game.engine.DrawBitmap(hoverBitmap, x + bXOffset, y + bYOffset);
-                    //game.engine.DrawBitmap(bmp, x, y);
-                    game.engine.SetColor(0, 0, 0, 255);
-                    game.engine.DrawBitmap(bmp, x, y, bX, bY, bW, bH);
+                    game.engine.SetColor(hoverR, hoverG, hoverB, (int)hoverAlpha);
+                    if (hoverBitmap != null)
+                    {
+                        game.engine.DrawBitmap(hoverBitmap, x + bXOffset, y + bYOffset);
+                    }
+                    else
+                    {
+                        game.engine.FillRectangle(x - 4, y - 4, w + 8, h + 8);
+                    }
                 }
-                else
-                {
-                    game.engine.FillRectangle(x - 4, y - 4, w + 8, h + 8);
-                }
+                game.engine.SetColor(0, 0, 0, 255);
+                game.engine.DrawBitmap(bmp, x, y);
             }
         }
 
@@ -135,11 +137,6 @@ namespace breakingBread.breakingBread.Game
                 if (game.selectedItem != this)
                 {
                     game.selectedItem = this;
-
-                }
-                else
-                {
-                    game.selectedItem = null;
                 }
             }
         }
@@ -149,40 +146,46 @@ namespace breakingBread.breakingBread.Game
         private System.Drawing.Bitmap highlightBmp;
 
 
-        private bool generateHighlight(int bmpX, int bmpY, int bmpW, int bmpH)
+        bool generateHighlight(string bmp)
         {
             //Initializing our main bitmap
-            bit = new System.Drawing.Bitmap(game.assetPath + "Asset_Sheet.png");
-            int threshold = 1;
+            try
+            {
+                bit = new System.Drawing.Bitmap(game.assetPath + bmp);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
 
-            for (int _x = bmpX; _x <= (bmpW + bmpX); _x++)
+            for (int _x = 0; _x < bit.Width; _x++)
             {
                 //Initializing our highlight bitmap
-                highlightBmp = new System.Drawing.Bitmap((bmpW) + 10, (bmpH) + 10);
-                for (int _y = bmpY; _y <= (bmpH + bmpY); _y++)
+                highlightBmp = new System.Drawing.Bitmap(bit.Width + 10, bit.Height + 10);
+                for (int _y = 0; _y < bit.Height; _y++)
                 {
                     if (bit.GetPixel(_x, _y).A == 0)
                     {
-                        if (_x + 1 < (bmpW + bmpX) && bit.GetPixel(_x + 1, _y).A > threshold)
+                        if (_x + 1 < bit.Width && bit.GetPixel(_x + 1, _y).A == 255)
                         {
-                            Vector2f currentpos = new Vector2f(_x - bmpX, _y - bmpY);
+                            Vector2f currentpos = new Vector2f(_x, _y);
                             boundPoints.Add(currentpos);
                         }
 
-                        if (_x - 1 >= bmpX && bit.GetPixel(_x - 1, _y).A > threshold)
+                        if (_x - 1 != -1 && bit.GetPixel(_x - 1, _y).A == 255)
                         {
-                            Vector2f currentpos = new Vector2f(_x - bmpX, _y - bmpY);
+                            Vector2f currentpos = new Vector2f(_x, _y);
                             boundPoints.Add(currentpos);
                         }
 
-                        if ((_y - 1) >= bmpY && bit.GetPixel(_x, _y - 1).A > threshold)
+                        if ((_y - 1) != -1 && bit.GetPixel(_x, _y - 1).A == 255)
                         {
-                            Vector2f currentpos = new Vector2f(_x - bmpX, _y - bmpY);
+                            Vector2f currentpos = new Vector2f(_x, _y);
                             boundPoints.Add(currentpos);
                         }
-                        if ((_y + 1) < (bmpH + bmpY) && bit.GetPixel(_x, _y + 1).A > threshold)
+                        if ((_y + 1) < bit.Height && bit.GetPixel(_x, _y + 1).A == 255)
                         {
-                            Vector2f currentpos = new Vector2f(_x - bmpX, _y - bmpY);
+                            Vector2f currentpos = new Vector2f(_x, _y);
                             boundPoints.Add(currentpos);
                         }
 
@@ -203,14 +206,10 @@ namespace breakingBread.breakingBread.Game
             }
             try
             {
-                highlightBmp.Save(game.assetPath + "Hover_" + bmpX + "-" + bmpY + ".png");
-                hoverBitmap = new Bitmap("Hover_" + bmpX + "-" + bmpY + ".png");
+                highlightBmp.Save(game.assetPath + "Hover_" + bmp);
+                hoverBitmap = new Bitmap("Hover_" + bmp);
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-
+            catch (Exception ex) { }
 
             highlightBmp.Dispose();
             bit.Dispose();
@@ -225,8 +224,8 @@ namespace breakingBread.breakingBread.Game
                 hoverBitmap.Dispose();
             hoverBitmap = null;
 
-            //if (File.Exists(game.assetPath + "Hover_" + bmpName))
-            //    File.Delete(game.assetPath + "Hover_" + bmpName);
+            if (File.Exists(game.assetPath + "Hover_" + bmpName))
+                File.Delete(game.assetPath + "Hover_" + bmpName);
             if (bmp != null)
             {
                 bmp.Dispose();

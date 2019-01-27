@@ -1,5 +1,4 @@
 ﻿using breakingBread.breakingBread.Game.gameObjects;
-using breakingBread.breakingBread.Game.util;
 using GameEngine;
 using System;
 using System.Collections.Generic;
@@ -18,11 +17,11 @@ namespace breakingBread.breakingBread.Game.Scenes.Room_1
         public override void startScene()
         {
             bck = new Background("bombBackground.png");
-            bWire = new pInteractable(bWireCallback, 245, 191, 32, 320, new Dimension(-1, -1, -1, -1));
+            bWire = new pInteractable(bWireCallback, 245, 191, 32, 320, "bWire.png");
             bWire.setHover(true, 255, 0, 0);
-            yWire = new pInteractable(yWireCallback, 365, 191, 32, 320, new Dimension(-1, -1, -1, -1));
+            yWire = new pInteractable(yWireCallback, 365, 191, 32, 320, "yWire.png");
             yWire.setHover(true, 255, 0, 0);
-            rWire = new pInteractable(rWireCallback, 478, 191, 32, 320, new Dimension(-1, -1, -1, -1));
+            rWire = new pInteractable(rWireCallback, 478, 191, 32, 320, "rWire.png");
             rWire.setHover(true, 255, 0, 0);
         }
 

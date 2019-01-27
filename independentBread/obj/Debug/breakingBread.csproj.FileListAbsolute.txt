@@ -56,32 +56,3 @@ B:\OneDrive\School 2018 - 2019\Periode 2\Project\breakingBread 2.0\independentBr
 B:\OneDrive\School 2018 - 2019\Periode 2\Project\breakingBread 2.0\independentBread\obj\Debug\breakingBread.csproj.CopyComplete
 B:\OneDrive\School 2018 - 2019\Periode 2\Project\breakingBread 2.0\independentBread\obj\Debug\breakingBread.exe
 B:\OneDrive\School 2018 - 2019\Periode 2\Project\breakingBread 2.0\independentBread\obj\Debug\breakingBread.pdb
-D:\Git\breakingBread\independentBread\bin\Debug\libmp3lame.32.dll
-D:\Git\breakingBread\independentBread\bin\Debug\libmp3lame.64.dll
-D:\Git\breakingBread\independentBread\bin\Debug\breakingBread.exe.config
-D:\Git\breakingBread\independentBread\bin\Debug\breakingBread.exe
-D:\Git\breakingBread\independentBread\bin\Debug\breakingBread.pdb
-D:\Git\breakingBread\independentBread\bin\Debug\NAudio.dll
-D:\Git\breakingBread\independentBread\bin\Debug\NAudio.Lame.dll
-D:\Git\breakingBread\independentBread\bin\Debug\SharpDX.D3DCompiler.dll
-D:\Git\breakingBread\independentBread\bin\Debug\SharpDX.Desktop.dll
-D:\Git\breakingBread\independentBread\bin\Debug\SharpDX.Diagnostics.dll
-D:\Git\breakingBread\independentBread\bin\Debug\SharpDX.Direct2D1.dll
-D:\Git\breakingBread\independentBread\bin\Debug\SharpDX.Direct3D11.dll
-D:\Git\breakingBread\independentBread\bin\Debug\SharpDX.dll
-D:\Git\breakingBread\independentBread\bin\Debug\SharpDX.DXGI.dll
-D:\Git\breakingBread\independentBread\bin\Debug\SharpDX.Mathematics.dll
-D:\Git\breakingBread\independentBread\bin\Debug\NAudio.xml
-D:\Git\breakingBread\independentBread\bin\Debug\SharpDX.xml
-D:\Git\breakingBread\independentBread\bin\Debug\SharpDX.D3DCompiler.xml
-D:\Git\breakingBread\independentBread\bin\Debug\SharpDX.Desktop.xml
-D:\Git\breakingBread\independentBread\bin\Debug\SharpDX.Diagnostics.xml
-D:\Git\breakingBread\independentBread\bin\Debug\SharpDX.Direct2D1.xml
-D:\Git\breakingBread\independentBread\bin\Debug\SharpDX.Direct3D11.xml
-D:\Git\breakingBread\independentBread\bin\Debug\SharpDX.DXGI.xml
-D:\Git\breakingBread\independentBread\bin\Debug\SharpDX.Mathematics.xml
-D:\Git\breakingBread\independentBread\obj\Debug\breakingBread.csprojAssemblyReference.cache
-D:\Git\breakingBread\independentBread\obj\Debug\breakingBread.csproj.CoreCompileInputs.cache
-D:\Git\breakingBread\independentBread\obj\Debug\breakingBread.csproj.CopyComplete
-D:\Git\breakingBread\independentBread\obj\Debug\breakingBread.exe
-D:\Git\breakingBread\independentBread\obj\Debug\breakingBread.pdb

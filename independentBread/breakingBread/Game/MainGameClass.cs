@@ -15,7 +15,6 @@ namespace breakingBread.breakingBread.Game
         begin = 0,
         baguEmpty,
         bombDefused,
-        lampMoving,
         lampClicked,
         endGame
     }
@@ -50,7 +49,7 @@ namespace breakingBread.breakingBread.Game
         public gameState gState;
         public Utils util = new Utils();
         public Item selectedItem = null;
-        public List<Dimension> dimensions;
+        List<Dimension> bitmaps = new List<Dimension>();
 
 
         public bool goUpdating = false;
