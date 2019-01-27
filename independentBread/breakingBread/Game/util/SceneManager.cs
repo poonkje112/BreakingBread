@@ -34,10 +34,7 @@ namespace breakingBread.breakingBread.Game.util
                 {
                     if (curSceneIndex != -1)
                     {
-                        for (int i = 0; i < game.gameObjects.Count; i++)
-                        {
-                            game.gameObjects[i].Unsubscribe(game.gameObjects[i].ID);
-                        }
+                        game.util.unsubscribeAll(game);
                         game.gameObjects.Clear();
                         game.scenes[curSceneIndex].unLoadScene();
                     }

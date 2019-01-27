@@ -1,4 +1,6 @@
 ﻿using breakingBread.breakingBread.Game;
+using breakingBread.breakingBread.Game.util;
+using System;
 
 namespace GameEngine
 {
@@ -7,8 +9,8 @@ namespace GameEngine
         GameEngine engine;
         MainGameClass game;
         scenes scenes = new scenes();
-        string version = "ALPHA 2.0";
-        string buildDate = "9-1-2019";
+        string version = "Pre-Release 1.0";
+        string buildDate = "26-1-2019";
 
 
 
@@ -16,6 +18,11 @@ namespace GameEngine
         {
             scenes.warmupScenes();
             game.sceneManager.Start();
+            foreach(Dimension d in game.util.dimensions)
+            {
+                game.util.Log("X: {0} Y: {1} W: {2} H: {3}", d.x, d.y, d.w, d.h);
+            }
+            game.dimensions = game.util.dimensions;
 
         }
 
@@ -36,7 +43,7 @@ namespace GameEngine
         public override void GameEnd()
         {
             for (int i = 0; i < game.gameObjects.Count; i++)
-                game.gameObjects[i].Unsubscribe(game.gameObjects[i].ID);
+                game.gameObjects[i].Unsubscribe(game.gameObjects[i]);
         }
 
         public override void Update()
