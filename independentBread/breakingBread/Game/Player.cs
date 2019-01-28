@@ -45,6 +45,7 @@ namespace breakingBread.breakingBread.Game
             y = _y;
             LoadSprites();
             scale = _scale;
+            layer = 10000;
             Subscribe(this);
         }
 

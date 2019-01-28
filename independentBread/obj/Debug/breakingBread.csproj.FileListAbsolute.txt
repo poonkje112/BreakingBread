@@ -85,3 +85,32 @@ D:\Git\breakingBread\independentBread\obj\Debug\breakingBread.csproj.CoreCompile
 D:\Git\breakingBread\independentBread\obj\Debug\breakingBread.csproj.CopyComplete
 D:\Git\breakingBread\independentBread\obj\Debug\breakingBread.exe
 D:\Git\breakingBread\independentBread\obj\Debug\breakingBread.pdb
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\obj\Debug\breakingBread.csprojAssemblyReference.cache
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\obj\Debug\breakingBread.csproj.CoreCompileInputs.cache
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\obj\Debug\breakingBread.exe
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\obj\Debug\breakingBread.pdb
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\bin\Debug\libmp3lame.32.dll
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\bin\Debug\libmp3lame.64.dll
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\bin\Debug\breakingBread.exe.config
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\bin\Debug\breakingBread.exe
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\bin\Debug\breakingBread.pdb
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\bin\Debug\NAudio.dll
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\bin\Debug\NAudio.Lame.dll
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\bin\Debug\SharpDX.D3DCompiler.dll
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\bin\Debug\SharpDX.Desktop.dll
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\bin\Debug\SharpDX.Diagnostics.dll
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\bin\Debug\SharpDX.Direct2D1.dll
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\bin\Debug\SharpDX.Direct3D11.dll
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\bin\Debug\SharpDX.dll
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\bin\Debug\SharpDX.DXGI.dll
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\bin\Debug\SharpDX.Mathematics.dll
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\bin\Debug\NAudio.xml
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\bin\Debug\SharpDX.xml
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\bin\Debug\SharpDX.D3DCompiler.xml
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\bin\Debug\SharpDX.Desktop.xml
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\bin\Debug\SharpDX.Diagnostics.xml
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\bin\Debug\SharpDX.Direct2D1.xml
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\bin\Debug\SharpDX.Direct3D11.xml
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\bin\Debug\SharpDX.DXGI.xml
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\bin\Debug\SharpDX.Mathematics.xml
+B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\breakingBread\independentBread\obj\Debug\breakingBread.csproj.CopyComplete

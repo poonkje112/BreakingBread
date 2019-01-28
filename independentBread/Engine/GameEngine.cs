@@ -1070,11 +1070,11 @@ namespace GameEngine
         //Bitmaps
         public void DrawBitmap(Bitmap bitmap, float x, float y)
         {
-            DrawBitmap(bitmap, x, y, 0, 0, 0, 0, m_Scale);
+            DrawBitmap(bitmap, x, y, 0, 0, 0, 0, m_Scale, 0f);
         }
         public void DrawBitmap(Bitmap bitmap, float x, float y, float sourceX, float sourceY, float sourceWidth, float sourceHeight)
         {
-            DrawBitmap(bitmap, x, y, sourceX, sourceY, sourceWidth, sourceHeight, m_Scale);
+            DrawBitmap(bitmap, x, y, sourceX, sourceY, sourceWidth, sourceHeight, m_Scale, 0f);
         }
 
         public void DrawBitmap(Bitmap bitmap, Vector2f position)
@@ -1082,23 +1082,28 @@ namespace GameEngine
             DrawBitmap(bitmap, position.X, position.Y);
         }
 
-        public void DrawBitmap(Bitmap bitmap, Vector2f position, Vector2f scale)
+        public void DrawBitmap(Bitmap bitmap, int x, int y, Vector2f scale)
         {
-            DrawBitmap(bitmap, position.X, position.Y, 0, 0, 0, 0, scale);
+            DrawBitmap(bitmap, x, y, 0, 0, 0, 0, scale, 0f);
         }
 
         public void DrawBitmap(Bitmap bitmap, Vector2f position, Vector2f scale, Rectanglef rect)
         {
-            DrawBitmap(bitmap, position.X, position.Y, rect.X, rect.Y, rect.Width, rect.Height, scale);
+            DrawBitmap(bitmap, position.X, position.Y, rect.X, rect.Y, rect.Width, rect.Height, scale, 0f);
         }
 
         public void DrawBitmap(Bitmap bitmap, Vector2f position, Vector2f scale, Rectanglef rect, bool flip)
         {
-            DrawBitmap(bitmap, position.X, position.Y, rect.X, rect.Y, rect.Width, rect.Height, scale, flip);
+            DrawBitmap(bitmap, position.X, position.Y, rect.X, rect.Y, rect.Width, rect.Height, scale, 0f, flip);
+        }
+
+        public void DrawBitmap(Bitmap bitmap, Vector2f position, Vector2f scale, Rectanglef rect, float angle, bool flip)
+        {
+            DrawBitmap(bitmap, position.X, position.Y, rect.X, rect.Y, rect.Width, rect.Height, scale, angle, flip);
         }
 
         //TODO Make my own version of the bitmap system - Aaron Knoop
-        public void DrawBitmap(Bitmap bitmap, float x, float y, float sourceX, float sourceY, float sourceWidth, float sourceHeight, Vector2f scale, bool flip = false)
+        public void DrawBitmap(Bitmap bitmap, float x, float y, float sourceX, float sourceY, float sourceWidth, float sourceHeight, Vector2f scale, float angle, bool flip = false)
         {
             if (!PaintCheck())
                 return;
@@ -1110,11 +1115,11 @@ namespace GameEngine
             //Adjust the transform matrix
             if (!flip)
             {
-                SetTransformMatrix(new Vector2f(x, y), m_Angle, scale, new Vector2f(sourceWidth * 0.5f, sourceHeight * 0.5f));
+                SetTransformMatrix(new Vector2f(x, y), angle, scale, new Vector2f(sourceWidth * 0.5f, sourceHeight * 0.5f));
             }
             else
             {
-                SetTransformMatrix(new Vector2f(x, y), m_Angle, new Vector2f(-scale.X, scale.Y), new Vector2f(sourceWidth * 0.5f, sourceHeight * 0.5f));
+                SetTransformMatrix(new Vector2f(x, y), angle, new Vector2f(-scale.X, scale.Y), new Vector2f(sourceWidth * 0.5f, sourceHeight * 0.5f));
 
             }
 

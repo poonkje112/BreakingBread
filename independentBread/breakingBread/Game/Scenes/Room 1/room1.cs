@@ -1,19 +1,13 @@
 ﻿using breakingBread.breakingBread.Game.gameObjects;
 using breakingBread.breakingBread.Game.util;
-using GameEngine;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace breakingBread.breakingBread.Game.Scenes
 {
     class room1 : pScene
     {
         Background bck;
-        pInteractable Vent, Bomb, Bagu, lamp;
+        pInteractable Vent, Bomb, breadI, lamp, propl, bread1, bread2;
         MainGameClass game = MainGameClass.Instance;
         Player p;
         Random rand = new Random();
@@ -24,21 +18,28 @@ namespace breakingBread.breakingBread.Game.Scenes
             bck = new Background("Room_1_sketch.png");
             Bomb = new pInteractable(bombCallback, 40, 411, 85, 171, new Dimension(515, 1242, 597, 1410));
             Bomb.highlightAlpha = 255;
-            Vent = new pInteractable(ventCallback, 511, 340, 257, 200, new Dimension(-1, -1, -1, -1));
+            Vent = new pInteractable(ventCallback, 511, 300, 257, 200, new Dimension(0, 1241, 256, 1483));
             Vent.highlightAlpha = 255;
-            Bagu = new pInteractable(baguCallback, 860, 537, 288, 78, new Dimension(-1, -1, -1, -1));
-            Bagu.highlightAlpha = 255;
+
+            breadI = new pInteractable(baguCallback, 1000, 575, (746 - 600), (1399 - 1327), new Dimension(600, 1327, 746, 1399));
+            breadI.highlightAlpha = 255;
+
+            bread1 = new pInteractable(null, game.WIDTH / 2, 575, (639 - 515), (1465 - 1413), new Dimension(515, 1413, 639, 1465));
+            bread1.highlightAlpha = 255;
+
+            bread2 = new pInteractable(null, 270, 515, (678 - 600), (1324 - 1242), new Dimension(600, 1242, 678, 1324));
+            bread2.highlightAlpha = 255;
+
             lamp = new pInteractable(null, 230, 160, 70, 70, new Dimension(-1, -1, -1, -1));
             lamp.doHoverAnimation = false;
+            propl = new pInteractable(null, 511, 300, 70, 70, new Dimension(258, 1242, 512, 1482));
+            propl.doHoverAnimation = false;
 
             new Inventory();
-            p = new Player(game.WIDTH / 2 - (int)37.5, 550, .2f);
+            p = new Player(((game.WIDTH / 4) * 3)- (int)37.5, 550, .2f);
             Bomb.setHover(true);
-            //game.wState = (wireState)(rand.Next(Enum.GetNames(typeof(wireState)).Length));
-            game.wState = wireState.R;
 
-            test = new pBitmap(2);
-            testbit = test.getBitmap();
+            game.wState = wireState.R;
 
             Inventory inventory = new Inventory();
         }
@@ -81,7 +82,8 @@ namespace breakingBread.breakingBread.Game.Scenes
 
         public override void updateScene()
         {
-
+            if(game.gState != gameState.bombDefused)
+            propl.angle += 2f * game.engine.GetDeltaTime();
         }
 
         public override void drawScene()

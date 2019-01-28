@@ -8,7 +8,7 @@ namespace breakingBread.breakingBread.Game.util
         y
     }
 
-    class SceneManager
+    public class SceneManager
     {
         MainGameClass game;
         private int curSceneIndex = -1;

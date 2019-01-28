@@ -5,9 +5,8 @@ using System.Collections.Generic;
 
 namespace breakingBread.breakingBread.Game
 {
-    class Item : pGameObject
+    public class Item : pGameObject
     {
-        Bitmap bmp;
         MissingTexture missing;
         MainGameClass game = MainGameClass.Instance;
         Bitmap hoverBitmap;
@@ -36,7 +35,6 @@ namespace breakingBread.breakingBread.Game
                 bY = bmpD.y;
                 bW = bmpD.w;
                 bH = bmpD.h;
-                bmp = new Bitmap("Asset_Sheet.png");
                 generateHighlight(bX, bY, bW, bH);
             }
             else
@@ -74,7 +72,7 @@ namespace breakingBread.breakingBread.Game
                     game.engine.DrawBitmap(hoverBitmap, x + bXOffset, y + bYOffset);
                     //game.engine.DrawBitmap(bmp, x, y);
                     game.engine.SetColor(0, 0, 0, 255);
-                    game.engine.DrawBitmap(bmp, x, y, bX, bY, bW, bH);
+                    game.engine.DrawBitmap(game.assetSheet, x, y, bX, bY, bW, bH);
                 }
                 else
                 {
@@ -227,11 +225,11 @@ namespace breakingBread.breakingBread.Game
 
             //if (File.Exists(game.assetPath + "Hover_" + bmpName))
             //    File.Delete(game.assetPath + "Hover_" + bmpName);
-            if (bmp != null)
-            {
-                bmp.Dispose();
-                bmp = null;
-            }
+            //if (bmp != null)
+            //{
+            //    bmp.Dispose();
+            //    bmp = null;
+            //}
             highlightBmp = null;
             GC.Collect();
         }

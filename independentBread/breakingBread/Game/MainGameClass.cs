@@ -1,4 +1,5 @@
 ﻿using breakingBread.breakingBread.Game.util;
+using GameEngine;
 using System.Collections.Generic;
 
 namespace breakingBread.breakingBread.Game
@@ -20,7 +21,7 @@ namespace breakingBread.breakingBread.Game
         endGame
     }
 
-    class MainGameClass
+    public class MainGameClass
     {
 
         #region Singleton
@@ -51,6 +52,7 @@ namespace breakingBread.breakingBread.Game
         public Utils util = new Utils();
         public Item selectedItem = null;
         public List<Dimension> dimensions;
+        public Bitmap assetSheet;
 
 
         public bool goUpdating = false;

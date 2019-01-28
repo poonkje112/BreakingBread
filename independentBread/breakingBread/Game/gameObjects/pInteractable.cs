@@ -15,6 +15,7 @@ namespace breakingBread.breakingBread.Game
         public Color color = Color.White;
         MainGameClass game = MainGameClass.Instance;
         MissingTexture missing;
+        public float angle = 0f;
 
         #region variables
         #region public
@@ -28,7 +29,6 @@ namespace breakingBread.breakingBread.Game
         #endregion
 
         #region private
-        private Bitmap bitmap;
         //private string bmpName;
         private Bitmap hoverBitmap;
         private iCallback callback;
@@ -71,7 +71,6 @@ namespace breakingBread.breakingBread.Game
             highlightMap = gHighlight;
             if (bmpD.x != -1 && bmpD.y != -1 && bmpD.w != -1 && bmpD.h != -1)
                 {
-                bitmap = new Bitmap("Asset_Sheet.png");
                 bX = bmpD.x;
                 bY = bmpD.y;
                 bW = bmpD.w;
@@ -133,7 +132,7 @@ namespace breakingBread.breakingBread.Game
                 game.engine.SetColor(0, 0, 0, 255);
 
                 if (!missingTexture)
-                    game.engine.DrawBitmap(bitmap, x, y, bX, bY, bW, bH);
+                    game.engine.DrawBitmap(game.assetSheet, x, y, bX, bY, bW, bH, new Vector2f(1, 1), angle);
             }
         }
 
@@ -288,8 +287,8 @@ namespace breakingBread.breakingBread.Game
 
             if (!missingTexture)
             {
-                bitmap.Dispose();
-                bitmap = null;
+                //bitmap.Dispose();
+                //bitmap = null;
             }
             else
             {

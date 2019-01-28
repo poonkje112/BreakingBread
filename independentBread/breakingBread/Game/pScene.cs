@@ -9,7 +9,7 @@ namespace breakingBread.breakingBread.Game
     public class pScene
     {
 
-        MainGameClass game = MainGameClass.Instance;
+        public MainGameClass game = MainGameClass.Instance;
 
         public virtual void startScene() { }
         public virtual void unLoadScene() { GC.Collect(); }

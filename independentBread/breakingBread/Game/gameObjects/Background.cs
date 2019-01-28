@@ -9,6 +9,7 @@ namespace breakingBread.breakingBread.Game.gameObjects
     {
         Bitmap bmp;
         MainGameClass game = MainGameClass.Instance;
+        public Vector2f scale = new Vector2f(1f, 1f);
         bool missingTexture = false;
         public Background(string bitmap)
         {
@@ -28,7 +29,7 @@ namespace breakingBread.breakingBread.Game.gameObjects
         public override void pDraw()
         {
             if(!missingTexture)
-            game.engine.DrawBitmap(bmp, 0, 0, 0, 0, game.WIDTH, game.HEIGHT);
+            game.engine.DrawBitmap(bmp, (int)x, (int)y, scale);
         }
 
         public override void Destroy()

@@ -1,10 +1,6 @@
 ﻿using breakingBread.breakingBread.Game.Scenes;
 using breakingBread.breakingBread.Game.Scenes.Room_1;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using breakingBread.breakingBread.Game.Scenes.Slides;
 
 namespace breakingBread.breakingBread.Game
 {
@@ -15,6 +11,8 @@ namespace breakingBread.breakingBread.Game
         Splashscreen splash = new Splashscreen();
         mainMenu menu = new mainMenu();
         room1 room1 = new room1();
+        Slide_1_1 slide_1_1 = new Slide_1_1();
+        Slide_1_2 slide_1_2 = new Slide_1_2();
         bombDefuse bomb = new bombDefuse();
         room2 room2 = new room2();
         Death death = new Death();
@@ -23,9 +21,12 @@ namespace breakingBread.breakingBread.Game
         public void warmupScenes()
         {
             game.util.Log("Warming up scenes...");
+            game.assetSheet = new GameEngine.Bitmap("Asset_Sheet.png");
+            game.scenes.Add(room1);
             game.scenes.Add(splash);
             game.scenes.Add(menu);
-            game.scenes.Add(room1);
+            game.scenes.Add(slide_1_1);
+            game.scenes.Add(slide_1_2);
             game.scenes.Add(bomb);
             game.scenes.Add(room2);
             game.scenes.Add(credits);

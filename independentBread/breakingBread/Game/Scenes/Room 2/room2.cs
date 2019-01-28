@@ -12,8 +12,7 @@ namespace breakingBread.breakingBread.Game.Scenes
         public override void startScene()
         {
             new Background("room2.png");
-            //169
-            lamp = new pInteractable(moveTo, 537, -169, 31, 550, new Dimension(-1, -1, -1, -1), true, 255, 0, 0);
+            lamp = new pInteractable(moveTo, 537, -300, 31, 550, new Dimension(-1, -1, -1, -1), true, 255, 0, 0);
             player = new Player(45, 595, .2f);
             inventory = new Inventory();
             cheese = new pInteractable(Cheese, 303, 207, 95, 95, new Dimension(-1, -1, -1, -1));
