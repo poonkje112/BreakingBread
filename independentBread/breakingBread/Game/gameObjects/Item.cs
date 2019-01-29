@@ -2,6 +2,7 @@
 using GameEngine;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace breakingBread.breakingBread.Game
 {
@@ -202,8 +203,16 @@ namespace breakingBread.breakingBread.Game
             }
             try
             {
-                highlightBmp.Save(game.assetPath + "Hover_" + bmpX + "-" + bmpY + ".png");
-                hoverBitmap = new Bitmap("Hover_" + bmpX + "-" + bmpY + ".png");
+                if (File.Exists(game.assetPath + "Hover_" + bmpX + "-" + bmpY + ".png"))
+                {
+                    hoverBitmap = new Bitmap("Hover_" + bmpX + "-" + bmpY + ".png");
+                }
+                else
+                {
+                    hoverBitmap = new Bitmap("Hover_" + bmpX + "-" + bmpY + ".png");
+                    highlightBmp.Save(game.assetPath + "Hover_" + bmpX + "-" + bmpY + ".png");
+                    highlightBmp.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -211,7 +220,6 @@ namespace breakingBread.breakingBread.Game
             }
 
 
-            highlightBmp.Dispose();
             bit.Dispose();
             GC.Collect();
             return true;

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace breakingBread.breakingBread.Game.util
 {
@@ -8,6 +10,8 @@ namespace breakingBread.breakingBread.Game.util
         y
     }
 
+    public struct IconInfo { public bool fIcon; public int xHotspot; public int yHotspot; public IntPtr hbmMask; public IntPtr hbmColor; }
+
     public class SceneManager
     {
         MainGameClass game;
@@ -16,15 +20,36 @@ namespace breakingBread.breakingBread.Game.util
         public isSceneSwitching switchState;
         private int sceneAlpha = 255;
 
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr CreateIconIndirect(ref IconInfo icon);
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool GetIconInfo(IntPtr hIcon, ref IconInfo pIconInfo);
+
+        Cursor main;
+        public static Cursor CreateCursor(System.Drawing.Bitmap bmp, int xHotSpot, int yHotSpot)
+        {
+            IconInfo tmp = new IconInfo();
+            GetIconInfo(bmp.GetHicon(), ref tmp);
+            tmp.xHotspot = xHotSpot;
+            tmp.yHotspot = yHotSpot;
+            tmp.fIcon = false;
+            return new Cursor(CreateIconIndirect(ref tmp));
+        }
+
         public void Start()
         {
             game = MainGameClass.Instance;
-
+            //Cursor.Current = new Cursor(@"D:\Git\breakingBread\independentBread\bin\Breaking Bread\Assets\muis.ico");
+            main = CreateCursor(new System.Drawing.Bitmap(game.assetPath + "muis.png"), 0, 0);
         }
 
         int frameCount = 0;
         public void updateScene()
         {
+            Cursor.Current = main;
             if (curSceneIndex != sceneIndex)
                 switchState = isSceneSwitching.y;
 
@@ -74,7 +99,6 @@ namespace breakingBread.breakingBread.Game.util
 
             if (sceneAlpha < 0)
                 sceneAlpha = 0;
-
         }
 
         public void drawScene()

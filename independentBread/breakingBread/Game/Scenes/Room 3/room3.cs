@@ -10,8 +10,11 @@ namespace breakingBread.breakingBread.Game.Scenes.Room_3
         public override void startScene()
         {
             new Background("Kamer_3.png");
-            new Inventory();
+            Inventory inv = new Inventory();
+            game.inventory.RemoveAt(0);
+            game.inventory.RemoveAt(0);
             //VERWIJDER MIJ
+
             game.inventory.Add(new Item(new Dimension(681, 1242, 733, 1296)));
             game.inventory.Add(new Item(new Dimension(1235, 1395, 1287, 1449)));
             game.gState = gameState.lampClicked;

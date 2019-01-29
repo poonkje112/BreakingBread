@@ -21,18 +21,18 @@ namespace breakingBread.breakingBread.Game.Scenes
             cheese.movePlayer = false;
             rat = new pInteractable(Rat, 714, 534, (1088 - 1013), (1517 - 1454), new Dimension(1013, 1454, 1088, 1517));
             rat.movePlayer = false;
-
+            game.inventory.Add(new Item(new Dimension(681, 1242, 733, 1296)));
             decal1 = new pInteractable(null, 229, 104, 5, 5, new Dimension(1013, 1242, 1232, 1452));
             decal1.doHoverAnimation = false;
-            decal1.layer = 50;
+            decal1.layer = player.layer + 1;
 
             decal2 = new pInteractable(null, 484, 8, 5, 5, new Dimension(1235, 1242, 1390, 1346));
             decal2.doHoverAnimation = false;
-            decal2.layer = 50;
+            decal2.layer = player.layer + 1;
 
             decal3 = new pInteractable(null, 613, 457, 5, 5, new Dimension(1393, 1242, 1623, 1388));
             decal3.doHoverAnimation = false;
-            decal3.layer = 50;
+            decal3.layer = player.layer + 1;
 
         }
 

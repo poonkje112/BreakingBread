@@ -1105,29 +1105,28 @@ namespace GameEngine
         //TODO Make my own version of the bitmap system - Aaron Knoop
         public void DrawBitmap(Bitmap bitmap, float x, float y, float sourceX, float sourceY, float sourceWidth, float sourceHeight, Vector2f scale, float angle, bool flip = false)
         {
-            if (!PaintCheck())
-                return;
+                if (!PaintCheck())
+                    return;
+                SharpDX.Direct2D1.Bitmap D2DBitmap = bitmap.D2DBitmap;
 
-            SharpDX.Direct2D1.Bitmap D2DBitmap = bitmap.D2DBitmap;
+                if (sourceWidth == 0) sourceWidth = D2DBitmap.Size.Width;
+                if (sourceHeight == 0) sourceHeight = D2DBitmap.Size.Height;
+                //Adjust the transform matrix
+                if (!flip)
+                {
+                    SetTransformMatrix(new Vector2f(x, y), angle, scale, new Vector2f(sourceWidth * 0.5f, sourceHeight * 0.5f));
+                }
+                else
+                {
+                    SetTransformMatrix(new Vector2f(x, y), angle, new Vector2f(-scale.X, scale.Y), new Vector2f(sourceWidth * 0.5f, sourceHeight * 0.5f));
 
-            if (sourceWidth == 0) sourceWidth = D2DBitmap.Size.Width;
-            if (sourceHeight == 0) sourceHeight = D2DBitmap.Size.Height;
-            //Adjust the transform matrix
-            if (!flip)
-            {
-                SetTransformMatrix(new Vector2f(x, y), angle, scale, new Vector2f(sourceWidth * 0.5f, sourceHeight * 0.5f));
-            }
-            else
-            {
-                SetTransformMatrix(new Vector2f(x, y), angle, new Vector2f(-scale.X, scale.Y), new Vector2f(sourceWidth * 0.5f, sourceHeight * 0.5f));
+                }
 
-            }
+                RawRectangleF sourceRect = new RawRectangleF(sourceX, sourceY, (sourceX + sourceWidth), (sourceY + sourceHeight));
+                m_RenderTarget.DrawBitmap(D2DBitmap, m_CurrentBrush.Color.A, SharpDX.Direct2D1.BitmapInterpolationMode.Linear, sourceRect);
 
-            RawRectangleF sourceRect = new RawRectangleF(sourceX, sourceY, (sourceX + sourceWidth), (sourceY + sourceHeight));
-            m_RenderTarget.DrawBitmap(D2DBitmap, m_CurrentBrush.Color.A, SharpDX.Direct2D1.BitmapInterpolationMode.Linear, sourceRect);
-
-            //Reset the transform matrix
-            ResetTransformMatrix();
+                //Reset the transform matrix
+                ResetTransformMatrix();
         }
 
         public void DrawBitmap(Bitmap bitmap, int x, int y, Rectanglef sourceRect)

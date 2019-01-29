@@ -199,7 +199,7 @@ namespace breakingBread.breakingBread.Game
         {
             if (visible)
             {
-                Cursor.Current = Cursors.Hand;
+                //Cursor.Current = Cursors.Hand;
                 if (hoverAlpha == 0)
                     hoverAnimate = true;
 

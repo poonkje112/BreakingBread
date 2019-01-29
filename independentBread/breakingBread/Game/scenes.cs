@@ -30,9 +30,9 @@ namespace breakingBread.breakingBread.Game
             //game.scenes.Add(slide_1_1);
             //game.scenes.Add(slide_1_2);
             //game.scenes.Add(room1);
-            //game.scenes.Add(bomb);
+            game.scenes.Add(bomb);
             //game.scenes.Add(slide_2_1);
-            //game.scenes.Add(room2);
+            game.scenes.Add(room2);
             game.scenes.Add(room3);
             game.scenes.Add(credits);
             game.scenes.Add(death);

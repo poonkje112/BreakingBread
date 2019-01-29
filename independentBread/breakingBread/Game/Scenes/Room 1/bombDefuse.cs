@@ -18,11 +18,11 @@ namespace breakingBread.breakingBread.Game.Scenes.Room_1
         public override void startScene()
         {
             bck = new Background("bombBackground.png");
-            bWire = new pInteractable(bWireCallback, 245, 191, 32, 320, new Dimension(-1, -1, -1, -1));
+            bWire = new pInteractable(bWireCallback, 245, 190, 30, 324, new Dimension(2646, 1242, 2674, 1564));
             bWire.setHover(true, 255, 0, 0);
-            yWire = new pInteractable(yWireCallback, 365, 191, 32, 320, new Dimension(-1, -1, -1, -1));
+            yWire = new pInteractable(yWireCallback, 365, 190, 30, 324, new Dimension(2678, 1242, 2707, 1564));
             yWire.setHover(true, 255, 0, 0);
-            rWire = new pInteractable(rWireCallback, 478, 191, 32, 320, new Dimension(-1, -1, -1, -1));
+            rWire = new pInteractable(rWireCallback, 478, 190, 30, 320, new Dimension(2711, 1242, 2739, 1564));
             rWire.setHover(true, 255, 0, 0);
         }
 
