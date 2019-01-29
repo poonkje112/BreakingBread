@@ -53,6 +53,7 @@ namespace breakingBread.breakingBread.Game
         public Item selectedItem = null;
         public List<Dimension> dimensions;
         public Bitmap assetSheet;
+        public Player player;
 
 
         public bool goUpdating = false;

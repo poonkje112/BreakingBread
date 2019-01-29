@@ -5,20 +5,20 @@ using System.Collections.Generic;
 
 namespace breakingBread.breakingBread.Game
 {
-    enum isMoving
+    public enum isMoving
     {
         n = 0,
         y
     }
 
-    enum movingDir
+    public enum movingDir
     {
         left = 0,
         right,
         up,
         down
     }
-    class Player : pGameObject
+    public class Player : pGameObject
     {
         float mX, mY, mW, mH;
         float movementSpeed = 200f;
@@ -34,18 +34,18 @@ namespace breakingBread.breakingBread.Game
         public List<Dimension> WalkingVert = new List<Dimension>();
         public List<Dimension> walkingAway = new List<Dimension>();
         public List<Dimension> walkingTowards = new List<Dimension>();
-        Bitmap animationSheet;
+        public bool depthAnim = true;
 
 
 
         public Player(int _x, int _y, float _scale)
         {
-            animationSheet = new Bitmap("textureMap.png");
             x = _x;
             y = _y;
             LoadSprites();
             scale = _scale;
             layer = 10000;
+            game.player = this;
             Subscribe(this);
         }
 
@@ -74,40 +74,85 @@ namespace breakingBread.breakingBread.Game
             walkingTowards.Add(new Dimension(1013, 1, 1263, 393));
             walkingTowards.Add(new Dimension(1266, 1, 1516, 393));
 
-            walkingAway.Add(new Dimension(2060, 1, 2310, 393));
-            walkingAway.Add(new Dimension(2313, 1, 2563, 393));
-            walkingAway.Add(new Dimension(2566, 1, 2861, 393));
-            walkingAway.Add(new Dimension(2819, 1, 3068, 393));
-            walkingAway.Add(new Dimension(3072, 1, 3321, 393));
-            walkingAway.Add(new Dimension(3325, 1, 3575, 393));
+            walkingAway.Add(new Dimension(1772, 1, 2022, 393));
+            walkingAway.Add(new Dimension(2025, 1, 2275, 393));
+            walkingAway.Add(new Dimension(2278, 1, 2528, 393));
+            walkingAway.Add(new Dimension(2531, 1, 2781, 393));
+            walkingAway.Add(new Dimension(2784, 1, 3034, 393));
+            walkingAway.Add(new Dimension(3037, 1, 3287, 393));
         }
 
+        bool called = false;
+        public bool depthScale = true;
         public override void pUpdate()
         {
             if (moveState == isMoving.y)
             {
-
-                //Do movement/scale shizzle
-                if (y != mY && y > mY)
+                if (!depthAnim)
                 {
-                    y -= ((movementSpeed * 0.5f) * game.engine.GetDeltaTime());
+                    //Do movement/scale shizzle
+                    if (y != mY && y > mY)
+                    {
+                        y -= ((movementSpeed * 0.5f) * game.engine.GetDeltaTime());
+                    }
+
+                    if (x != mX && x > mX)
+                    {
+                        dir = movingDir.left;
+                        x -= (movementSpeed * game.engine.GetDeltaTime());
+                    }
+
+                    if (y != mY && y < mY)
+                    {
+                        y += ((movementSpeed * 0.5f) * game.engine.GetDeltaTime());
+                    }
+
+                    if (x != mX && x < mX)
+                    {
+                        dir = movingDir.right;
+                        x += (movementSpeed * game.engine.GetDeltaTime());
+                    }
                 }
-
-                if (x != mX && x > mX)
+                else
                 {
-                    dir = movingDir.left;
-                    x -= (movementSpeed * game.engine.GetDeltaTime());
-                }
+                    if (x >= mX && x <= (mX + 20))
+                    {
+                        if (!called)
+                        {
+                            currentFrame = 0;
+                            called = true;
+                        }
+                        if (y != mY && y > mY)
+                        {
+                            y -= ((movementSpeed * 0.5f) * game.engine.GetDeltaTime());
+                            if(scale > 0.1f && depthScale)
+                            scale -= 0.0005f;
+                            dir = movingDir.up;
+                        }
 
-                if (y != mY && y < mY)
-                {
-                    y += ((movementSpeed * 0.5f) * game.engine.GetDeltaTime());
-                }
+                        if (y != mY && y < mY)
+                        {
+                            y += ((movementSpeed * 0.5f) * game.engine.GetDeltaTime());
+                            if(scale < 0.2f && depthScale)
+                            scale += 0.0005f;
+                            dir = movingDir.down;
+                        }
+                    }
+                    else
+                    {
 
-                if (x != mX && x < mX)
-                {
-                    dir = movingDir.right;
-                    x += (movementSpeed * game.engine.GetDeltaTime());
+                        if (x != mX && x > mX)
+                        {
+                            dir = movingDir.left;
+                            x -= (movementSpeed * game.engine.GetDeltaTime());
+                        }
+
+                        if (x != mX && x < mX)
+                        {
+                            dir = movingDir.right;
+                            x += (movementSpeed * game.engine.GetDeltaTime());
+                        }
+                    }
                 }
                 //Scaling
 
@@ -133,26 +178,49 @@ namespace breakingBread.breakingBread.Game
 
                 //if (x == mX && y == mY)
 
-                if (wFrameCount == 2)
+                if (dir == movingDir.left || dir == movingDir.right)
                 {
-                    wFrameCount = 0;
-                    if (currentFrame == 11)
+                    if (wFrameCount >= 2)
                     {
-                        currentFrame = 0;
+                        wFrameCount = 0;
+                        if (currentFrame == 11)
+                        {
+                            currentFrame = 0;
+                        }
+                        else
+                        {
+                            currentFrame++;
+                        }
                     }
                     else
                     {
-                        currentFrame++;
+                        wFrameCount++;
                     }
                 }
                 else
                 {
-                    wFrameCount++;
+                    if (wFrameCount >= 5)
+                    {
+                        wFrameCount = 0;
+                        if (currentFrame == walkingAway.Count - 1)
+                        {
+                            currentFrame = 0;
+                        }
+                        else
+                        {
+                            currentFrame++;
+                        }
+                    } else
+                    {
+                        wFrameCount++;
+                    }
                 }
+
 
                 if (x >= mX && x <= (mX + 20) && y >= mY && y <= (mY + 20))
                 {
                     moveState = isMoving.n;
+                    called = false;
                     callback.Invoke();
                 }
 
@@ -211,20 +279,28 @@ namespace breakingBread.breakingBread.Game
             {
                 if (!blinking)
                 {
-                    game.engine.DrawBitmap(animationSheet, new Vector2f(x, y), new Vector2f(scale, scale), new Rectanglef(idle[0].x, idle[0].y, idle[0].w, idle[0].h));
+                    game.engine.DrawBitmap(game.assetSheet, new Vector2f(x, y), new Vector2f(scale, scale), new Rectanglef(idle[0].x, idle[0].y, idle[0].w, idle[0].h));
                 }
                 else
                 {
-                    game.engine.DrawBitmap(animationSheet, new Vector2f(x, y), new Vector2f(scale, scale), new Rectanglef(idle[1].x, idle[1].y, idle[1].w, idle[1].h));
+                    game.engine.DrawBitmap(game.assetSheet, new Vector2f(x, y), new Vector2f(scale, scale), new Rectanglef(idle[1].x, idle[1].y, idle[1].w, idle[1].h));
                 }
             }
             else if (dir == movingDir.left)
             {
-                game.engine.DrawBitmap(animationSheet, new Vector2f(x + ((WalkingVert[0].w - WalkingVert[0].x) * scale), y), new Vector2f(scale, scale), new Rectanglef(WalkingVert[currentFrame].x, WalkingVert[currentFrame].y, WalkingVert[currentFrame].w, WalkingVert[currentFrame].h), true);
+                game.engine.DrawBitmap(game.assetSheet, new Vector2f(x + ((WalkingVert[0].w - WalkingVert[0].x) * scale), y), new Vector2f(scale, scale), new Rectanglef(WalkingVert[currentFrame].x, WalkingVert[currentFrame].y, WalkingVert[currentFrame].w, WalkingVert[currentFrame].h), true);
             }
             else if (dir == movingDir.right)
             {
-                game.engine.DrawBitmap(animationSheet, new Vector2f(x, y), new Vector2f(scale, scale), new Rectanglef(WalkingVert[currentFrame].x, WalkingVert[currentFrame].y, WalkingVert[currentFrame].w, WalkingVert[currentFrame].h), false);
+                game.engine.DrawBitmap(game.assetSheet, new Vector2f(x, y), new Vector2f(scale, scale), new Rectanglef(WalkingVert[currentFrame].x, WalkingVert[currentFrame].y, WalkingVert[currentFrame].w, WalkingVert[currentFrame].h), false);
+            }
+            else if (dir == movingDir.up)
+            {
+                game.engine.DrawBitmap(game.assetSheet, new Vector2f(x, y), new Vector2f(scale, scale), new Rectanglef(walkingAway[currentFrame].x, walkingAway[currentFrame].y, walkingAway[currentFrame].w, walkingAway[currentFrame].h), false);
+            }
+            else if (dir == movingDir.down)
+            {
+                game.engine.DrawBitmap(game.assetSheet, new Vector2f(x, y), new Vector2f(scale, scale), new Rectanglef(walkingTowards[currentFrame].x, walkingTowards[currentFrame].y, walkingTowards[currentFrame].w, walkingTowards[currentFrame].h), false);
             }
         }
         public void moveTo(iCallback c, float _x, float _y)
@@ -246,6 +322,11 @@ namespace breakingBread.breakingBread.Game
                 //scaleX = 0.5f;
                 //scaleY = 1.5f;
             }
+        }
+
+        public override void Destroy()
+        {
+            game.player = null;
         }
 
     }

@@ -61,6 +61,7 @@ namespace breakingBread.breakingBread.Game
                 missing.y = y;
                 missing.w = w;
                 missing.h = h;
+                //missing.layer = 2001;
             }
 
             if (doHoverAnimation)

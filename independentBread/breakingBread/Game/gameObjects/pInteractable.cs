@@ -44,6 +44,8 @@ namespace breakingBread.breakingBread.Game
         private bool highlightMap = false;
         private System.Drawing.Bitmap highlightBmp;
         private bool exiting = false;
+        public bool movePlayer = true;
+        public bool moveY = true;
 
         private int bX = -1, bY = -1, bW = -1, bH = -1;
 
@@ -200,8 +202,30 @@ namespace breakingBread.breakingBread.Game
                 hoverAnimate = true;
 
             if (game.engine.GetMouseButtonDown(0))
-                callback.Invoke();
+            {
+                try
+                {
+                    if (movePlayer)
+                    {
+                        if(moveY)
+                        game.player.moveTo(returnCall, x, y);
+                        else
+                        game.player.moveTo(returnCall, x, game.player.y);
 
+                    }
+                    else
+                        returnCall();
+                } catch(Exception ex)
+                {
+                    returnCall();
+                }
+            }
+
+        }
+
+        private void returnCall()
+        {
+            callback.Invoke();
         }
 
         private bool generateHighlight(int bmpX, int bmpY, int bmpW, int bmpH)
@@ -260,13 +284,13 @@ namespace breakingBread.breakingBread.Game
             {
                 highlightBmp.Save(game.assetPath + "Hover_" + bmpX + "-" + bmpY + ".png");
                 hoverBitmap = new Bitmap("Hover_" + bmpX + "-" + bmpY + ".png");
+            highlightBmp.Dispose();
             }
             catch (Exception ex) {
                 Console.WriteLine(ex.ToString());
             }
 
             
-            highlightBmp.Dispose();
             bit.Dispose();
             GC.Collect();
             return true;

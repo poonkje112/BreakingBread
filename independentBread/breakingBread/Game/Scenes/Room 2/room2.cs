@@ -5,18 +5,34 @@ namespace breakingBread.breakingBread.Game.Scenes
 {
     class room2 : pScene
     {
-        pInteractable lamp, cheese, rat;
+        pInteractable lamp, cheese, rat, decal1, decal2, decal3;
         MainGameClass game = MainGameClass.Instance;
         Player player;
         Inventory inventory;
         public override void startScene()
         {
             new Background("room2.png");
-            lamp = new pInteractable(moveTo, 537, -300, 31, 550, new Dimension(-1, -1, -1, -1), true, 255, 0, 0);
             player = new Player(45, 595, .2f);
+            player.depthAnim = false;
             inventory = new Inventory();
-            cheese = new pInteractable(Cheese, 303, 207, 95, 95, new Dimension(-1, -1, -1, -1));
-            rat = new pInteractable(Rat, 693, 512, 75, 75, new Dimension(-1, -1, -1, -1));
+            lamp = new pInteractable(moveTo, 537, -300, 31, 550, new Dimension(996, 1242, 1010, 1721));
+            lamp.movePlayer = false;
+            cheese = new pInteractable(Cheese, 268, 264, (1297 - 1235), (1392 - 1349), new Dimension(1235, 1349, 1297, 1392));
+            cheese.movePlayer = false;
+            rat = new pInteractable(Rat, 714, 534, (1088 - 1013), (1517 - 1454), new Dimension(1013, 1454, 1088, 1517));
+            rat.movePlayer = false;
+
+            decal1 = new pInteractable(null, 229, 104, 5, 5, new Dimension(1013, 1242, 1232, 1452));
+            decal1.doHoverAnimation = false;
+            decal1.layer = 50;
+
+            decal2 = new pInteractable(null, 484, 8, 5, 5, new Dimension(1235, 1242, 1390, 1346));
+            decal2.doHoverAnimation = false;
+            decal2.layer = 50;
+
+            decal3 = new pInteractable(null, 613, 457, 5, 5, new Dimension(1393, 1242, 1623, 1388));
+            decal3.doHoverAnimation = false;
+            decal3.layer = 50;
 
         }
 
@@ -32,7 +48,7 @@ namespace breakingBread.breakingBread.Game.Scenes
         {
             if (game.gState == gameState.lampClicked)
             {
-                game.inventory.Add(new Item(new Dimension(-1, -1, -1, -1)));
+                game.inventory.Add(new Item(new Dimension(1235, 1395, 1287, 1449)));
                 cheese.Unsubscribe(cheese);
             }
         }
@@ -41,7 +57,6 @@ namespace breakingBread.breakingBread.Game.Scenes
         {
             if (game.selectedItem != null && game.inventory.Count > 1 && game.inventory[1] != null && game.inventory[1] == game.selectedItem)
             {
-                rat.Unsubscribe(rat);
                 game.selectedItem = null;
                 player.moveTo(moveCallback, 300, 595);
             }
@@ -55,6 +70,7 @@ namespace breakingBread.breakingBread.Game.Scenes
         void moveCallback2()
         {
             player.moveTo(switchScene, 932 - ((player.WalkingVert[0].w - player.WalkingVert[0].x) * player.scale), 569 - ((player.WalkingVert[0].w - player.WalkingVert[0].x) * player.scale));
+            rat.Unsubscribe(rat);
         }
 
         void switchScene()
@@ -66,7 +82,7 @@ namespace breakingBread.breakingBread.Game.Scenes
         {
             if (game.gState == gameState.lampMoving)
             {
-                if (lamp.y <= -10)
+                if (lamp.y <= 0)
                 {
                     lamp.y += 400f * game.engine.GetDeltaTime();
                 }

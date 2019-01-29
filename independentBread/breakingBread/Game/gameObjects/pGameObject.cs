@@ -11,6 +11,7 @@ namespace breakingBread.breakingBread
         public int layer = 0;
         public float scale = .25f;
         public float x, y, w, h;
+        public string tag = "";
 
         public virtual void pUpdate() { }
 

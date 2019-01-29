@@ -11,6 +11,7 @@ namespace breakingBread.breakingBread.Game
 
         public Inventory()
         {
+            //layer = 2000;
             Subscribe(this);
         }
 
