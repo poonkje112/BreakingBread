@@ -197,30 +197,33 @@ namespace breakingBread.breakingBread.Game
 
         void doCallbackChecks()
         {
-            Cursor.Current = Cursors.Hand;
-            if (hoverAlpha == 0)
-                hoverAnimate = true;
-
-            if (game.engine.GetMouseButtonDown(0))
+            if (visible)
             {
-                try
-                {
-                    if (movePlayer)
-                    {
-                        if(moveY)
-                        game.player.moveTo(returnCall, x, y);
-                        else
-                        game.player.moveTo(returnCall, x, game.player.y);
+                Cursor.Current = Cursors.Hand;
+                if (hoverAlpha == 0)
+                    hoverAnimate = true;
 
-                    }
-                    else
-                        returnCall();
-                } catch(Exception ex)
+                if (game.engine.GetMouseButtonDown(0))
                 {
-                    returnCall();
+                    try
+                    {
+                        if (movePlayer)
+                        {
+                            if (moveY)
+                                game.player.moveTo(returnCall, x, y);
+                            else
+                                game.player.moveTo(returnCall, x, game.player.y);
+
+                        }
+                        else
+                            returnCall();
+                    }
+                    catch (Exception ex)
+                    {
+                        returnCall();
+                    }
                 }
             }
-
         }
 
         private void returnCall()

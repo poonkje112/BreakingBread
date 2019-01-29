@@ -18,6 +18,9 @@ namespace breakingBread.breakingBread.Game
         bombDefused,
         lampMoving,
         lampClicked,
+        Stage1,
+        Stage2,
+        Stage3,
         endGame
     }
 
