@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.IO;
 
 namespace GameEngine
 {
@@ -28,6 +29,7 @@ namespace GameEngine
             ShowWindow(GetConsoleWindow(), SW_HIDE);
 #endif
             GameEngine instance = GameEngine.GetInstance();
+            AppDomain.CurrentDomain.ProcessExit += new EventHandler(onExit);
 
             if (instance == null)
                 return;
@@ -38,6 +40,27 @@ namespace GameEngine
 
             //Clean up unmanaged resources
             instance.Dispose();
+        }
+
+#if DEBUG
+        static string assetPath = "../../Assets/";
+#else
+        static string assetPath = "./Assets/";
+#endif
+
+        static void onExit(object sender, EventArgs e)
+        {
+            foreach(string file in Directory.GetFiles(assetPath))
+            {
+                if(file.Contains("Hover_"))
+                {
+                    try
+                    {
+                        File.Delete(file);
+                    }
+                    catch { }
+                }
+            }
         }
     }
 }
