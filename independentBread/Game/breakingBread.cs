@@ -55,8 +55,8 @@ namespace GameEngine
         public override void Paint()
         {
             game.Draw();
-            engine.DrawString("Version: " + version, game.WIDTH - 170, game.HEIGHT - 40, 250, 100);
-            engine.DrawString("Build date: " + buildDate, game.WIDTH - 170, game.HEIGHT - 20, 250, 100);
+            //engine.DrawString("Version: " + version, game.WIDTH - 170, game.HEIGHT - 40, 250, 100);
+            //engine.DrawString("Build date: " + buildDate, game.WIDTH - 170, game.HEIGHT - 20, 250, 100);
 
         }
     }

@@ -25,13 +25,13 @@ namespace breakingBread.breakingBread.Game
         {
             game.util.Log("Warming up scenes...");
             game.assetSheet = new GameEngine.Bitmap("Asset_Sheet.png");
-            //game.scenes.Add(splash);
-            //game.scenes.Add(menu);
-            //game.scenes.Add(slide_1_1);
-            //game.scenes.Add(slide_1_2);
-            //game.scenes.Add(room1);
+            game.scenes.Add(splash);
+            game.scenes.Add(menu);
+            game.scenes.Add(slide_1_1);
+            game.scenes.Add(slide_1_2);
+            game.scenes.Add(room1);
             game.scenes.Add(bomb);
-            //game.scenes.Add(slide_2_1);
+            game.scenes.Add(slide_2_1);
             game.scenes.Add(room2);
             game.scenes.Add(room3);
             game.scenes.Add(credits);

@@ -1105,6 +1105,8 @@ namespace GameEngine
         //TODO Make my own version of the bitmap system - Aaron Knoop
         public void DrawBitmap(Bitmap bitmap, float x, float y, float sourceX, float sourceY, float sourceWidth, float sourceHeight, Vector2f scale, float angle, bool flip = false)
         {
+            try
+            {
                 if (!PaintCheck())
                     return;
                 SharpDX.Direct2D1.Bitmap D2DBitmap = bitmap.D2DBitmap;
@@ -1127,6 +1129,10 @@ namespace GameEngine
 
                 //Reset the transform matrix
                 ResetTransformMatrix();
+            } catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
 
         public void DrawBitmap(Bitmap bitmap, int x, int y, Rectanglef sourceRect)

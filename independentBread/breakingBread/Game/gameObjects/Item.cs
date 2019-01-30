@@ -148,9 +148,11 @@ namespace breakingBread.breakingBread.Game
         private System.Drawing.Bitmap bit;
         private System.Drawing.Bitmap highlightBmp;
 
-
+        Random rand = new Random();
+        int val = 0;
         private bool generateHighlight(int bmpX, int bmpY, int bmpW, int bmpH)
         {
+            val = rand.Next(99999);
             //Initializing our main bitmap
             bit = new System.Drawing.Bitmap(game.assetPath + "Asset_Sheet.png");
             int threshold = 1;
@@ -203,14 +205,14 @@ namespace breakingBread.breakingBread.Game
             }
             try
             {
-                if (File.Exists(game.assetPath + "Hover_" + bmpX + "-" + bmpY + ".png"))
+                if (File.Exists(game.assetPath + "Hover_" + bmpX + "-" + bmpY + "_" + val + ".png"))
                 {
-                    hoverBitmap = new Bitmap("Hover_" + bmpX + "-" + bmpY + ".png");
+                    hoverBitmap = new Bitmap("Hover_" + bmpX + "-" + bmpY + "_" + val + ".png");
                 }
                 else
                 {
-                    hoverBitmap = new Bitmap("Hover_" + bmpX + "-" + bmpY + ".png");
-                    highlightBmp.Save(game.assetPath + "Hover_" + bmpX + "-" + bmpY + ".png");
+                    highlightBmp.Save(game.assetPath + "Hover_" + bmpX + "-" + bmpY + "_" + val + ".png");
+                    hoverBitmap = new Bitmap("Hover_" + bmpX + "-" + bmpY + "_" + val + ".png");
                     highlightBmp.Dispose();
                 }
             }

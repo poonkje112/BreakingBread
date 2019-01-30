@@ -30,6 +30,14 @@ namespace breakingBread.breakingBread.Game.Scenes
             buttons.Add(new pInteractable(Exit, -1, 615, (3991 - 3613), (2532 - 2427), new Dimension(1701, 1631, 2079, 1737)));
             buttons[buttons.Count - 1].movePlayer = false;
 
+            buttons.Add(new pInteractable(null, -1, 407, (3991 - 3613), (2532 - 2427), new Dimension(1701, 1416, 2079, 1520)));
+            buttons[buttons.Count - 1].movePlayer = false;
+            buttons[buttons.Count - 1].doHoverAnimation = false;
+
+            buttons.Add(new pInteractable(null, -1, 510, (3991 - 3613), (2532 - 2427), new Dimension(1701, 1523, 2079, 1628)));
+            buttons[buttons.Count - 1].movePlayer = false;
+            buttons[buttons.Count - 1].doHoverAnimation = false;
+
             slides.Add(new Background(@"\Slides\Slide_1.1.png"));
             slides[slides.Count - 1].layer = -3;
             slides[slides.Count - 1].x = 193;

@@ -12,6 +12,7 @@ namespace breakingBread.breakingBread.Game.Scenes
         public override void startScene()
         {
             new Background("room2.png");
+            game.inventory.RemoveAt(0);
             player = new Player(45, 595, .2f);
             player.depthAnim = false;
             inventory = new Inventory();
