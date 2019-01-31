@@ -1,1 +1,0 @@
-- Soms duurt het een tijdje voordat de scene overschakelt naar de volgende scene.

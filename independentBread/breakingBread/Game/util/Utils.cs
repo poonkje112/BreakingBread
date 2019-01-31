@@ -21,7 +21,7 @@ namespace breakingBread.breakingBread.Game.util
 
         public int x
         {
-            get { return X; }
+            get { return X + 288; }
             set { X = value; }
         }
 

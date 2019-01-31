@@ -60,7 +60,7 @@ namespace breakingBread.breakingBread.Game.Scenes
 
         void bombCallback()
         {
-            p.moveTo(switchBomb, 75, 550);
+            p.moveTo(switchBomb, 60, 550);
         }
 
         void switchBomb()

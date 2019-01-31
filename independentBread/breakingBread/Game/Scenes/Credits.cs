@@ -1,4 +1,5 @@
 ﻿using breakingBread.breakingBread.Game.gameObjects;
+using breakingBread.breakingBread.Game.util;
 using GameEngine;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,11 @@ namespace breakingBread.breakingBread.Game.Scenes
     class Credits : pScene
     {
         MainGameClass game = MainGameClass.Instance;
+        pInteractable exit;
         public override void startScene()
         {
             new Background("endOfDemo.png");
-            new Button(Exit, "Exit game", 707, 264, 328, 55);
+            exit = new pInteractable(Exit, 205, 470, 378, 107, new Dimension(3072 - 288, 1255, 3449 - 288, 1361));
         }
         private void Exit() {
 

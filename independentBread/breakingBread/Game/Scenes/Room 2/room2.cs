@@ -56,21 +56,21 @@ namespace breakingBread.breakingBread.Game.Scenes
 
         void Rat()
         {
-            if (game.selectedItem != null && game.inventory.Count > 1 && game.inventory[1] != null && game.inventory[1] == game.selectedItem)
-            {
+            //if (game.selectedItem != null && game.inventory.Count > 1 && game.inventory[1] != null && game.inventory[1] == game.selectedItem)
+            //{
                 game.selectedItem = null;
                 player.moveTo(moveCallback, 300, 595);
-            }
+            //}
         }
 
         void moveCallback()
         {
-            player.moveTo(moveCallback2, 495 + ((player.WalkingVert[0].w - player.WalkingVert[0].x) * player.scale), 569 - ((player.WalkingVert[0].w - player.WalkingVert[0].x) * player.scale));
+            player.moveTo(moveCallback2, 495 + ((player.WalkingVert[0].w - player.WalkingVert[0].x) * player.scale), 500 - ((player.WalkingVert[0].h - player.WalkingVert[0].y) * player.scale));
 
         }
         void moveCallback2()
         {
-            player.moveTo(switchScene, 932 - ((player.WalkingVert[0].w - player.WalkingVert[0].x) * player.scale), 569 - ((player.WalkingVert[0].w - player.WalkingVert[0].x) * player.scale));
+            player.moveTo(switchScene, 932 - ((player.WalkingVert[0].w - player.WalkingVert[0].x) * player.scale), 500 - ((player.WalkingVert[0].h - player.WalkingVert[0].y) * player.scale));
             rat.Unsubscribe(rat);
         }
 

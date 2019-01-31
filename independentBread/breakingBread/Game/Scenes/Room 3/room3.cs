@@ -72,21 +72,21 @@ namespace breakingBread.breakingBread.Game.Scenes.Room_3
 
         void Burger()
         {
-            if (game.gState == gameState.lampClicked && game.inventory[1] != null && game.selectedItem == game.inventory[1])
+            if (game.gState == gameState.lampClicked && game.inventory.Count > 1 && game.inventory[1] != null && game.selectedItem == game.inventory[1])
             {
                 game.gState = gameState.Stage1;
                 game.inventory.RemoveAt(1);
                 burger1.visible = true;
                 burger0.visible = false;
             }
-            else if (game.gState == gameState.Stage1 && game.inventory[2] != null && game.selectedItem == game.inventory[2])
+            else if (game.gState == gameState.Stage1 && game.inventory.Count > 2 && game.inventory[2] != null && game.selectedItem == game.inventory[2])
             {
                 game.gState = gameState.Stage2;
                 game.inventory.RemoveAt(2);
                 burger2.visible = true;
                 burger1.visible = false;
             }
-            else if (game.gState == gameState.Stage2 && game.inventory[2] != null && game.selectedItem == game.inventory[2])
+            else if (game.gState == gameState.Stage2 && game.inventory.Count > 2 && game.inventory[2] != null && game.selectedItem == game.inventory[2])
             {
                 game.gState = gameState.Stage3;
                 game.inventory.RemoveAt(2);
@@ -106,7 +106,7 @@ namespace breakingBread.breakingBread.Game.Scenes.Room_3
 
         void Tomato()
         {
-            if (game.gState == gameState.Stage1 && game.inventory[1] != null && game.selectedItem == game.inventory[1])
+            if (game.gState == gameState.Stage1 && game.inventory.Count > 1 && game.inventory[1] != null && game.selectedItem == game.inventory[1])
             {
                 game.inventory.Add(new Item(new Dimension(544, 1672, 596, 1726)));
                 game.selectedItem = null;
@@ -132,7 +132,7 @@ namespace breakingBread.breakingBread.Game.Scenes.Room_3
 
         void Pan()
         {
-            if (game.gState == gameState.Stage2 && game.inventory[2] != null && game.selectedItem == game.inventory[2])
+            if (game.gState == gameState.Stage2 && game.inventory.Count > 2 && game.inventory[2] != null && game.selectedItem == game.inventory[2])
             {
                 game.inventory.RemoveAt(2);
                 game.inventory.Add(new Item(new Dimension(764, 1672, 816, 1726)));
@@ -159,7 +159,7 @@ namespace breakingBread.breakingBread.Game.Scenes.Room_3
 
         void _Lock ()
         {
-            if (game.gState == gameState.Stage3 && game.inventory[2] != null && game.selectedItem == game.inventory[2])
+            if (game.gState == gameState.Stage3 && game.inventory.Count > 2 && game.inventory[2] != null && game.selectedItem == game.inventory[2])
             {
                 game.sceneManager.sceneIndex++;
             }

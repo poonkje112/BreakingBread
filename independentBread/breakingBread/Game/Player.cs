@@ -51,21 +51,21 @@ namespace breakingBread.breakingBread.Game
 
         private void LoadSprites()
         {
-            idle.Add(new Dimension(1, 835, 251, 1227));
-            idle.Add(new Dimension(254, 835, 504, 1227));
+            idle.Add(new Dimension(2, 835, 250, 1227));
+            idle.Add(new Dimension(253, 835, 503, 1227));
 
-            WalkingVert.Add(new Dimension(2, 418, 250, 810));
-            WalkingVert.Add(new Dimension(255, 418, 503, 810));
-            WalkingVert.Add(new Dimension(508, 418, 756, 810));
-            WalkingVert.Add(new Dimension(761, 418, 1009, 810));
-            WalkingVert.Add(new Dimension(1014, 418, 1262, 810));
-            WalkingVert.Add(new Dimension(1267, 418, 1515, 810));
-            WalkingVert.Add(new Dimension(1520, 418, 1768, 810));
-            WalkingVert.Add(new Dimension(1773, 418, 2021, 810));
-            WalkingVert.Add(new Dimension(2026, 418, 2274, 810));
-            WalkingVert.Add(new Dimension(2279, 418, 2528, 810));
-            WalkingVert.Add(new Dimension(2532, 418, 2780, 810));
-            WalkingVert.Add(new Dimension(2785, 418, 3033, 810));
+            WalkingVert.Add(new Dimension(3, 418, 249, 810));
+            WalkingVert.Add(new Dimension(255, 418, 502, 810));
+            WalkingVert.Add(new Dimension(509, 418, 755, 810));
+            WalkingVert.Add(new Dimension(762, 418, 1008, 810));
+            WalkingVert.Add(new Dimension(1015, 418, 1261, 810));
+            WalkingVert.Add(new Dimension(1268, 418, 1514, 810));
+            WalkingVert.Add(new Dimension(1521, 418, 1767, 810));
+            WalkingVert.Add(new Dimension(1774, 418, 2020, 810));
+            WalkingVert.Add(new Dimension(2027, 418, 2273, 810));
+            WalkingVert.Add(new Dimension(2280, 418, 2527, 810));
+            WalkingVert.Add(new Dimension(2533, 418, 2779, 810));
+            WalkingVert.Add(new Dimension(2786, 418, 3032, 810));
 
             walkingTowards.Add(new Dimension(1, 1, 251, 393));
             walkingTowards.Add(new Dimension(254, 1, 504, 393));
@@ -288,7 +288,7 @@ namespace breakingBread.breakingBread.Game
             }
             else if (dir == movingDir.left)
             {
-                game.engine.DrawBitmap(game.assetSheet, new Vector2f(x + ((WalkingVert[0].w - WalkingVert[0].x) * scale), y), new Vector2f(scale, scale), new Rectanglef(WalkingVert[currentFrame].x, WalkingVert[currentFrame].y, WalkingVert[currentFrame].w, WalkingVert[currentFrame].h), true);
+                game.engine.DrawBitmap(game.assetSheet, new Vector2f(x, y), new Vector2f(scale, scale), new Rectanglef(WalkingVert[currentFrame].x, WalkingVert[currentFrame].y, WalkingVert[currentFrame].w, WalkingVert[currentFrame].h), true);
             }
             else if (dir == movingDir.right)
             {
