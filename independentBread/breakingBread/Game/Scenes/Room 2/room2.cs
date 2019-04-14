@@ -56,11 +56,11 @@ namespace breakingBread.breakingBread.Game.Scenes
 
         void Rat()
         {
-            //if (game.selectedItem != null && game.inventory.Count > 1 && game.inventory[1] != null && game.inventory[1] == game.selectedItem)
-            //{
+            if (game.selectedItem != null && game.inventory.Count > 1 && game.inventory[1] != null && game.inventory[1] == game.selectedItem)
+            {
                 game.selectedItem = null;
                 player.moveTo(moveCallback, 300, 595);
-            //}
+            }
         }
 
         void moveCallback()

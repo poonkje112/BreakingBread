@@ -11,12 +11,7 @@ namespace breakingBread.breakingBread.Game.Scenes.Room_3
         {
             new Background("Kamer_3.png");
             Inventory inv = new Inventory();
-            game.inventory.RemoveAt(0);
-            game.inventory.RemoveAt(0);
-            //VERWIJDER MIJ
 
-            game.inventory.Add(new Item(new Dimension(681, 1242, 733, 1296)));
-            game.inventory.Add(new Item(new Dimension(1235, 1395, 1287, 1449)));
             game.gState = gameState.lampClicked;
             player = new Player(796, 563, 0.20f);
             _lock = new pInteractable(_Lock, 687, 337, 34, 28, new Dimension(696, 1627, 724, 1651));

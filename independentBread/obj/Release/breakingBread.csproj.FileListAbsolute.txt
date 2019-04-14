@@ -85,3 +85,32 @@ B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\BB2\breakingBread\in
 B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\BB2\breakingBread\independentBread\obj\Release\breakingBread.csproj.CopyComplete
 B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\BB2\breakingBread\independentBread\obj\Release\breakingBread.exe
 B:\OneDrive\School 2018 - 2019\Periode 2\GIT\Branching test\BB2\breakingBread\independentBread\obj\Release\breakingBread.pdb
+D:\Git\breakingBread 2.0\independentBread\bin\Release\libmp3lame.32.dll
+D:\Git\breakingBread 2.0\independentBread\bin\Release\libmp3lame.64.dll
+D:\Git\breakingBread 2.0\independentBread\bin\Release\breakingBread.exe.config
+D:\Git\breakingBread 2.0\independentBread\bin\Release\breakingBread.exe
+D:\Git\breakingBread 2.0\independentBread\bin\Release\breakingBread.pdb
+D:\Git\breakingBread 2.0\independentBread\bin\Release\NAudio.dll
+D:\Git\breakingBread 2.0\independentBread\bin\Release\NAudio.Lame.dll
+D:\Git\breakingBread 2.0\independentBread\bin\Release\SharpDX.D3DCompiler.dll
+D:\Git\breakingBread 2.0\independentBread\bin\Release\SharpDX.Desktop.dll
+D:\Git\breakingBread 2.0\independentBread\bin\Release\SharpDX.Diagnostics.dll
+D:\Git\breakingBread 2.0\independentBread\bin\Release\SharpDX.Direct2D1.dll
+D:\Git\breakingBread 2.0\independentBread\bin\Release\SharpDX.Direct3D11.dll
+D:\Git\breakingBread 2.0\independentBread\bin\Release\SharpDX.dll
+D:\Git\breakingBread 2.0\independentBread\bin\Release\SharpDX.DXGI.dll
+D:\Git\breakingBread 2.0\independentBread\bin\Release\SharpDX.Mathematics.dll
+D:\Git\breakingBread 2.0\independentBread\bin\Release\NAudio.xml
+D:\Git\breakingBread 2.0\independentBread\bin\Release\SharpDX.xml
+D:\Git\breakingBread 2.0\independentBread\bin\Release\SharpDX.D3DCompiler.xml
+D:\Git\breakingBread 2.0\independentBread\bin\Release\SharpDX.Desktop.xml
+D:\Git\breakingBread 2.0\independentBread\bin\Release\SharpDX.Diagnostics.xml
+D:\Git\breakingBread 2.0\independentBread\bin\Release\SharpDX.Direct2D1.xml
+D:\Git\breakingBread 2.0\independentBread\bin\Release\SharpDX.Direct3D11.xml
+D:\Git\breakingBread 2.0\independentBread\bin\Release\SharpDX.DXGI.xml
+D:\Git\breakingBread 2.0\independentBread\bin\Release\SharpDX.Mathematics.xml
+D:\Git\breakingBread 2.0\independentBread\obj\Release\breakingBread.csprojAssemblyReference.cache
+D:\Git\breakingBread 2.0\independentBread\obj\Release\breakingBread.csproj.CoreCompileInputs.cache
+D:\Git\breakingBread 2.0\independentBread\obj\Release\breakingBread.csproj.CopyComplete
+D:\Git\breakingBread 2.0\independentBread\obj\Release\breakingBread.exe
+D:\Git\breakingBread 2.0\independentBread\obj\Release\breakingBread.pdb
